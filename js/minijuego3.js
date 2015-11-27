@@ -137,7 +137,6 @@
     subirPuntos: function(jugador, hambb) {
         puntos += 50;
         hambb.kill();
-        
     },
     
     salirNivel: function(jugador, cac) {
