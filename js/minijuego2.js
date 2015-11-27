@@ -7,10 +7,10 @@
     create: function () {
       this.input.onDown.add(this.onInputDown, this);
 
-        game.physics.startSystem(Phaser.Physics.ARCADE);
-        game.stage.backgroundColor = '#000000';
+        this.game.physics.startSystem(Phaser.Physics.ARCADE);
+        this.game.stage.backgroundColor = '#000000';
 
-        bg = game.add.tileSprite(0, 0, 800, 600, 'background');
+        bg = this.game.add.tileSprite(0, 0, 800, 600, 'background');
     },
 
     update: function () {
