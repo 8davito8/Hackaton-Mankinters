@@ -2,7 +2,7 @@
     'use strict';
 
     var player;
-    var platforms;
+    var casas;
     var cursors;
     var jumpButton;
 
@@ -14,10 +14,12 @@
 
             //this.game.load.baseURL = 'http://examples.phaser.io/assets/';
             this.game.load.crossOrigin = 'anonymous';
-            this.load.image('backdrop', '/assets/fondoLasVegasB.png');
+            this.load.image('backdrop', 'assets/fondoLasVegasB.png');
             this.game.load.image('player', 'http://examples.phaser.io/assets/sprites/phaser-dude.png');
-            this.game.load.image('platform', 'http://examples.phaser.io/assets/sprites/platform.png');
-            this.game.load.spritesheet('dude', '/assets/dude.png', 32, 48);
+            this.game.load.image('club', 'assets/Stripclub.png');
+            this.game.load.image('hotel', 'assets/Hotel.png');
+            this.game.load.image('taj', 'assets/TajMahal.png');
+            this.game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
 
         },
         create: function () {
@@ -37,16 +39,15 @@
             //player.body.gravity.y = 500;
             player.animations.add('left', [0, 1, 2, 3], 10, true);
             player.animations.add('right', [5, 6, 7, 8], 10, true);
-            platforms = this.game.add.physicsGroup();
+            casas = this.game.add.physicsGroup();
 
-            platforms.create(500, 150, 'platform');
-            platforms.create(-200, 300, 'platform');
-            platforms.create(400, 450, 'platform');
+            platforms.create(500, 150, 'club');
+            platforms.create(-200, 300, 'hotel');
+            platforms.create(400, 450, 'taj');
 
             platforms.setAll('body.immovable', true);
 
             cursors = this.game.input.keyboard.createCursorKeys();
-            jumpButton = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
         },
         update: function () {
             this.game.physics.arcade.collide(player, platforms);
@@ -60,18 +61,21 @@
             } else if (cursors.right.isDown) {
                 player.body.velocity.x = 250;
                 player.animations.play('right');
-            }
-
-            if (cursors.up.isDown) {
+            } else if (cursors.up.isDown) {
                 player.body.velocity.y = -250;
-            }else if(cursors.down.isDown){
+            } else if (cursors.down.isDown) {
                 player.body.velocity.y = 250;
+            } else {
+                //  Stand still
+                player.animations.stop();
+
+                player.frame = 4;
             }
         },
 
-//        onInputDown: function () {
-//            this.this.game.state.start('menu');
-//        }
+        //        onInputDown: function () {
+        //            this.this.game.state.start('menu');
+        //        }
     };
 
     window['mankinters'] = window['mankinters'] || {};
