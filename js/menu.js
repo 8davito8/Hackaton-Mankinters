@@ -4,15 +4,17 @@
   function Menu() {}
 
   Menu.prototype = {
-      
+    
+    /*  USADO CON IMAGENES DE BOTONES
     preload: function(){
         this.game.load.spritesheet('button', 'assets/images.jpg', 193, 71);
     },
-    
+    */
+      
     create: function () {
         this.game.stage.backgroundColor = '#182d3b';
 
-        /*
+        /* BOTONES (FEOS Y SIN TEXTO)
         var juego1 = this.game.add.button(this.game.world.centerX - 95, 50, 'button', this.game1, this, 2, 1, 0);
         var juego2 = this.game.add.button(this.game.world.centerX - 95, 200, 'button', this.game2, this, 2, 1, 0);
         var juego3 = this.game.add.button(this.game.world.centerX - 95, 350, 'button', this.game3, this, 2, 1, 0);
