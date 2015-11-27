@@ -14,10 +14,10 @@
 
             //this.game.load.baseURL = 'http://examples.phaser.io/assets/';
             this.game.load.crossOrigin = 'anonymous';
-            this.load.image('backdrop', 'http://softisse.com/hackathon/assets/fondoLasVegasB.png');
+            this.load.image('backdrop', '/assets/fondoLasVegasB.png');
             this.game.load.image('player', 'http://examples.phaser.io/assets/sprites/phaser-dude.png');
             this.game.load.image('platform', 'http://examples.phaser.io/assets/sprites/platform.png');
-            this.game.load.spritesheet('dude', 'http://examples.phaser.io/assets/dude.png', 32, 48);
+            this.game.load.spritesheet('dude', '/assets/dude.png', 32, 48);
 
         },
         create: function () {
@@ -29,13 +29,14 @@
             //            var bg = this.this.game.add.tileSprite(0, 0, 800, 600, 'background');
             this.game.world.setBounds(0, 0, 1200, 900);
             this.game.add.sprite(0, 0, 'backdrop');
-            player = this.game.add.sprite(100, 200, 'player');
+            player = this.game.add.sprite(100, 200, 'dude');
             this.game.camera.follow(player);
             this.game.physics.arcade.enable(player);
 
             player.body.collideWorldBounds = true;
             //player.body.gravity.y = 500;
-
+            player.animations.add('left', [0, 1, 2, 3], 10, true);
+            player.animations.add('right', [5, 6, 7, 8], 10, true);
             platforms = this.game.add.physicsGroup();
 
             platforms.create(500, 150, 'platform');
@@ -55,8 +56,10 @@
 
             if (cursors.left.isDown) {
                 player.body.velocity.x = -250;
+                player.animations.play('left');
             } else if (cursors.right.isDown) {
                 player.body.velocity.x = 250;
+                player.animations.play('right');
             }
 
             if (cursors.up.isDown) {
