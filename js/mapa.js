@@ -17,6 +17,7 @@
             this.load.image('backdrop', 'http://softisse.com/hackathon/assets/fondoLasVegasB.png');
             this.game.load.image('player', 'http://examples.phaser.io/assets/sprites/phaser-dude.png');
             this.game.load.image('platform', 'http://examples.phaser.io/assets/sprites/platform.png');
+            this.game.load.spritesheet('dude', 'http://examples.phaser.io/assets/dude.png', 32, 48);
 
         },
         create: function () {
