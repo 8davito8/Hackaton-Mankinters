@@ -1,16 +1,28 @@
 (function() {
   'use strict';
 
+    var map;
+    var layer;
+
   function minijuego1() {}
 
   minijuego1.prototype = {
+    preload: function(){
+
+        this.game.load.tilemap('qwert', 'assets/prueba.json', null, Phaser.Tilemap.TILED_JSON);
+
+        this.game.load.image('tiles', 'assets/imagenes.png');
+    },
+
     create: function () {
-      this.input.onDown.add(this.onInputDown, this);
+        this.game.stage.backgroundColor = '#787878';
 
-        this.game.physics.startSystem(Phaser.Physics.ARCADE);
-        this.game.stage.backgroundColor = '#000000';
+        map = this.game.add.tilemap('qwert');
+        map.addTilesetImage('imagenes', 'tiles');
+        layer = map.createLayer('mapa');
+        layer.resizeWorld();
 
-        var bg = this.game.add.tileSprite(0, 0, 800, 600, 'background');
+
     },
 
     update: function () {
