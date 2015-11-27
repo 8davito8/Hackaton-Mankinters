@@ -9,7 +9,7 @@
   minijuego1.prototype = {
     preload: function(){
 
-        this.game.load.tilemap('qwert', 'assets/prueba.json', null, Phaser.Tilemap.TILED_JSON);
+        this.game.load.tilemap('prueba', 'assets/prueba.json', null, Phaser.Tilemap.TILED_JSON);
 
         this.game.load.image('tiles', 'assets/imagenes.png');
     },
@@ -17,7 +17,7 @@
     create: function () {
         this.game.stage.backgroundColor = '#787878';
 
-        map = this.game.add.tilemap('qwert');
+        map = this.game.add.tilemap('prueba');
         map.addTilesetImage('imagenes', 'tiles');
         layer = map.createLayer('mapa');
         layer.resizeWorld();

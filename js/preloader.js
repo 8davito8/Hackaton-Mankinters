@@ -20,7 +20,7 @@
     loadResources: function () {
 
 // load your assets here
-        this.load.tilemap('qwert', 'assets/prueba.json', null, Phaser.Tilemap.TILED_JSON);
+        this.load.tilemap('prueba', 'assets/prueba.json', null, Phaser.Tilemap.TILED_JSON);
         this.load.image('tiles', 'assets/imagenes.png');
     },
 
