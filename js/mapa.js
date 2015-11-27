@@ -14,9 +14,9 @@
 
             //this.game.load.baseURL = 'http://examples.phaser.io/assets/';
             this.game.load.crossOrigin = 'anonymous';
-            this.load.image('backdrop', 'assets/fondoLasVegasB.png');
-            this.game.load.image('player', 'sprites/phaser-dude.png');
-            this.game.load.image('platform', 'sprites/platform.png');
+            this.load.image('backdrop', 'http://softisse.com/hackathon/assets/fondoLasVegasB.png');
+            this.game.load.image('player', 'http://examples.phaser.io/assets/sprites/phaser-dude.png');
+            this.game.load.image('platform', 'http://examples.phaser.io/assets/sprites/platform.png');
 
         },
         create: function () {
@@ -26,9 +26,10 @@
             //            this.this.game.stage.backgroundColor = '#000000';
             //
             //            var bg = this.this.game.add.tileSprite(0, 0, 800, 600, 'background');
+            this.game.world.setBounds(0, 0, 1200, 900);
             this.game.add.sprite(0, 0, 'backdrop');
             player = this.game.add.sprite(100, 200, 'player');
-
+            this.game.camera.follow(player);
             this.game.physics.arcade.enable(player);
 
             player.body.collideWorldBounds = true;
