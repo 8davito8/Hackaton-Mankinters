@@ -23,5 +23,5 @@
   };
 
   window['mankinters'] = window['mankinters'] || {};
-  window['mankinters'].Game = Game;
+  window['mankinters'].minijuego2 = minijuego2;
 }());
