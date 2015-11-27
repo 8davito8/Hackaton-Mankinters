@@ -12,15 +12,21 @@
     create: function () {
         this.game.stage.backgroundColor = '#182d3b';
 
+        /*
         var juego1 = this.game.add.button(this.game.world.centerX - 95, 50, 'button', this.game1, this, 2, 1, 0);
         var juego2 = this.game.add.button(this.game.world.centerX - 95, 200, 'button', this.game2, this, 2, 1, 0);
         var juego3 = this.game.add.button(this.game.world.centerX - 95, 350, 'button', this.game3, this, 2, 1, 0);
-
-        //juego1.onInputUp.add(game1, this);
-        //juego2.onInputUp.add(game2, this);
-        //juego3.onInputUp.add(game3, this);
+        */
         
-        //this.input.onDown.add(this.onDown, this);
+        var juego1 = this.game.add.text(this.game.world.centerX - 95, 200, "MINIJUEGO1");
+        var juego2 = this.game.add.text(this.game.world.centerX - 95, 200, "MINIJUEGO2");
+        var juego3 = this.game.add.text(this.game.world.centerX - 95, 200, "MINIJUEGO3");
+        
+        juego1.input.onDown(function(){
+            this.game.state.start("minijuego1");
+        });
+        
+        
     },
 
     update: function () {
