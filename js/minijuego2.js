@@ -10,7 +10,7 @@
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
         this.game.stage.backgroundColor = '#FF00FF';
 
-        var bg = this.game.add.tileSprite(0, 0, 800, 600, 'background');
+        //var bg = this.game.add.tileSprite(0, 0, 800, 600, 'background');
     },
 
     update: function () {
