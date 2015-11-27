@@ -41,16 +41,16 @@
             player.animations.add('right', [5, 6, 7, 8], 10, true);
             casas = this.game.add.physicsGroup();
 
-            platforms.create(500, 150, 'club');
-            platforms.create(-200, 300, 'hotel');
-            platforms.create(400, 450, 'taj');
+            casas.create(500, 150, 'club');
+            casas.create(-200, 300, 'hotel');
+            casas.create(400, 450, 'taj');
 
-            platforms.setAll('body.immovable', true);
+            casas.setAll('body.immovable', true);
 
             cursors = this.game.input.keyboard.createCursorKeys();
         },
         update: function () {
-            this.game.physics.arcade.collide(player, platforms);
+            this.game.physics.arcade.collide(player, casas);
 
             player.body.velocity.x = 0;
             player.body.velocity.y = 0;
