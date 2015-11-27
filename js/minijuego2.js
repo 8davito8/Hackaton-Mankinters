@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  function Game() {}
+  function minijuego2() {}
 
   minijuego2.prototype = {
     create: function () {
