@@ -27,7 +27,7 @@
         this.game.load.image("star", "./assets/star.png");
         this.game.load.image("pipe", "./assets/pipe.png");
         this.game.load.image("ground", "./assets/platform.png");
-        this.game.load.spritesheet("dude", "./assets/dude.png", 32, 48);
+        this.game.load.spritesheet("dude", "./assets/Sprite Minijuego 1 (50x55).png", 50, 55);
 
     },
 
@@ -72,7 +72,7 @@
 
         // ANIMACIONES JUGADOR
         // name, frames, frameRate, loop
-        jugador.animations.add('right', [5,6,7,8], 10, true);
+        jugador.animations.add('right', [1,2,3], 10, true);
         jugador.animations.play('right');
 
 
@@ -114,6 +114,12 @@
 
         if(cursors.up.isDown && jugador.body.touching.down){
             jugador.body.velocity.y = -450;
+            jugador.frame = 2;
+            //jugador.animation.paused = true;
+        }
+        
+        if(!jugador.body.touching.down){
+            jugador.frame = 3;
         }
 
         textoPuntos.text = 'Score: ' + parseInt(puntos);
@@ -150,7 +156,7 @@
             font: "24px Arial", fill: "#000"
         });
 
-        jugador.frame = 4;
+        jugador.frame = 2;
         puntos = 0;
 
         this.game.time.events.loop(1000, function(){
