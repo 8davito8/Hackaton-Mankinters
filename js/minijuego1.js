@@ -111,6 +111,8 @@
             }
 
             if(pausa.isDown){
+                player.body.velocity.y = 0;
+                player.body.velocity.x = 0;
                 this.game.state.start('mapa');
             }
         },

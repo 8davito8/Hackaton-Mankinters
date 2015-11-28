@@ -140,6 +140,8 @@
         }        
 
         if(pausa.isDown){
+            jugador.body.velocity.x = 0;
+            jugador.body.velocity.y = 0;
             this.game.state.start('mapa');
         }
 

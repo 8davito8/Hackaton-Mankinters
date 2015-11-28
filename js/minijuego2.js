@@ -121,7 +121,9 @@
             }
 
             if(pausa.isDown){
-                this.game.state.start('mapa');
+                coche.body.velocity.y = 0;
+                coche.body.velocity.x = 0;
+               this.game.state.start('mapa');
             }
 
         },
