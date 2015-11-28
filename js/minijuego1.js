@@ -4,13 +4,20 @@
     var map;
     var tileset;
     var layer;
+    
     var player;
-    var guitarra;
+    var guitarra;    
+    
+    var GameOver;
+    
     var sonido;
     var facing = 'left';
     var jumpTimer = 0;
+    
     var cursors;
     var jumpButton;
+    var juego;
+    
     var bg;
     var collision;
     
@@ -25,6 +32,9 @@
         },
 
         create: function () {
+            
+            juego = this.game;
+            
             this.game.world.setBounds(0, 0, 640, 480);
             this.game.physics.startSystem(Phaser.Physics.ARCADE);
             this.game.stage.backgroundColor = '#000000';
@@ -49,8 +59,8 @@
             player = this.game.add.sprite(32, this.game.world.height - 100, 'elvis');
 
             guitarra = this.game.add.group();
-            var guitar = guitarra.create(450, 100, 'guitarra');
             guitarra.enableBody = true;
+            var guitar = guitarra.create(450, 100, 'guitarra');
             
             this.game.physics.enable(guitarra);
             this.game.physics.enable(guitarra, Phaser.Physics.ARCADE);
@@ -84,8 +94,8 @@
         update: function () {
 
             this.game.physics.arcade.collide(player, layer);
-            this.game.physics.arcade.collide(layer, guitarra, this.win);
-            this.game.physics.arcade.overlap(player, guitarra);
+            this.game.physics.arcade.collide(layer, guitarra);
+            this.game.physics.arcade.overlap(player, guitarra, this.ganar);
 
             player.body.velocity.x = 0;
 
@@ -144,10 +154,21 @@
             }
         },
         
-        win: function(){
+        ganar: function(play, guitar){
             sonido.play();
+            juego.world.remove(guitarra);
             
-        },
+            GameOver = juego.add.text(juego.world.centerX - 50, juego.world.centerY - 12, 'Game Over', {
+                font: "24px Arial",
+                fill: "#000"
+            });
+
+            juego.time.events.loop(1000, function () {
+                //this.game.time.events.stop();
+                juego.world.remove(GameOver);
+                juego.state.start('mapa');
+            });
+       },
 
         onInputDown: function () {
             this.game.state.start('mapa');
