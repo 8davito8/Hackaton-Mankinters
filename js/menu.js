@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 (function () {
     'use strict';
 
@@ -75,3 +74,4 @@
 
     window['mankinters'] = window['mankinters'] || {};
     window['mankinters'].Menu = Menu;
+}) ();
