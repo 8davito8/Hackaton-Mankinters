@@ -99,6 +99,13 @@
 
             player.body.velocity.x = 0;
 
+             
+            if(cursors.up.isDown && player.body.onFloor()){
+                console.log('entra');
+                player.body.velocity.y = -250;                
+                jumpTimer = this.game.time.now + 350;
+            }
+
             if (cursors.left.isDown) {
                 player.body.velocity.x = -150;
 
@@ -127,11 +134,6 @@
                 }
             }
             
-            if(cursors.up.isDown && player.body.touching.down){
-                player.body.velocity.y = -250;                
-                jumpTimer = this.game.time.now + 350;
-            }
-            
 
             if(player.body.velocity.x < 0 && !player.body.onFloor()){
                 player.frame = 7;
@@ -157,6 +159,7 @@
         ganar: function(play, guitar){
             sonido.play();
             juego.world.remove(guitarra);
+            player.body.velocity.x = 0;
             
             GameOver = juego.add.text(juego.world.centerX - 50, juego.world.centerY - 12, 'Game Over', {
                 font: "24px Arial",
