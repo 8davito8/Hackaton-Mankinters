@@ -24,12 +24,6 @@
     minijuego2.prototype = {
 
         preload: function () {
-/*
-            this.game.load.image("road", "assets/road.png");
-            this.game.load.image("grieta", "assets/grieta.png");
-            this.game.load.image("cactus", "assets/Cactus 1.png");
-            this.game.load.image("car", "assets/car.png");
-*/
         },
 
         create: function () {
@@ -53,7 +47,6 @@
             // COCHE ROJO
             coche = this.game.add.sprite(this.game.world.centerX - 60, this.game.height - 80, "car");
             this.game.physics.enable(coche, Phaser.Physics.ARCADE);
-            //coche.tint = 0xff0000;
             coche.body.velocity.y = -20;
 
 
@@ -160,7 +153,6 @@
             var moveTween = juego.add.tween(coche1).to({
                 y: coche1.y - 20,
             }, 250, Phaser.Easing.Linear.None, true);
-
         }
 
 
@@ -192,7 +184,6 @@
         });
 
         juego.time.events.loop(1000, function () {
-            //this.game.time.events.stop();
             juego.world.remove(GameOver);
             juego.state.start('mapa');
         });

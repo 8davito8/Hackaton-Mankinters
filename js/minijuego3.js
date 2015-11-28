@@ -30,15 +30,6 @@
         preload: function () {
             sonidov = this.game.add.audio('acierto');
             sonidod = this.game.add.audio('fallo');
-            
-            /*
-                    this.game.load.image("star", "./assets/star.png");
-                    this.game.load.image("cactus1", "./assets/Cactus 1.png");
-                    this.game.load.image("cactus2", "./assets/Cactus 2.png");
-                    this.game.load.image("ground", "./assets/Suelo.png");
-                    this.game.load.spritesheet("dude", "./assets/Sprite Minijuego 1 (50x55).png", 50, 55);
-            */
-
         },
 
         create: function () {
@@ -88,7 +79,6 @@
             this.game.physics.arcade.enable(jugador);
 
             // PROPIEDADES FISICAS DEL JUGADOR
-            //jugador.body.immovable = true;
             jugador.body.bounce.y = 0; // REBOTE Y
             jugador.body.gravity.y = 700; // ALTURA DE SALTO
             jugador.body.collideWorldBounds = true; // REBOTE CONTRA BORDES DEL MUNDO
@@ -167,7 +157,6 @@
                 jugador.body.velocity.x = 0;
                 jugador.body.velocity.y = -450;
                 jugador.frame = 4;
-                //jugador.animation.paused = true;
             }
 
             if (!jugador.body.touching.down) {
@@ -210,10 +199,8 @@
 
         subirPuntos: function (jugador, hambb) {
             // SONIDO
-            
             sonidov.play();
-            //this.game.sound.setDecodedCallback(sonido, start, this);
-
+            
             puntos += 50;
             hambb.kill();
         },

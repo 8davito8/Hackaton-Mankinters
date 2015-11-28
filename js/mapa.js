@@ -18,23 +18,7 @@
 
     mapa.prototype = {
         preload: function () {
-            //this.game.stage.backgroundColor = '#85b5e1';
 
-            //this.game.load.baseURL = 'http://examples.phaser.io/assets/';
-/*
-            this.game.load.crossOrigin = 'anonymous';
-            this.load.image('backdrop', 'assets/fondoLasVegas.png');
-            this.game.load.image('club', 'assets/Stripclub.png');
-            this.game.load.image('hotel', 'assets/Hotel.png');
-            this.game.load.image('taj', 'assets/TajMahal.png');
-            this.game.load.image('muro', 'assets/muro.png');
-            this.game.load.image('murofin', 'assets/murofin.png');
-            this.game.load.image('murolateral', 'assets/murolateral.png');
-            this.game.load.image('muroarriba', 'assets/muroarriba.png');
-            this.game.load.image('cartel', 'assets/cartel.png');
-            this.game.load.image('vacio', 'assets/lleno.png');
-            this.game.load.spritesheet('dude', 'assets/spriteInicio.png', 50, 60);
-*/
             musica = this.game.add.audio('melodia3');
             musica.play();
 

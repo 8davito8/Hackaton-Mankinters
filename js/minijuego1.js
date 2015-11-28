@@ -20,12 +20,7 @@
 
     minijuego1.prototype = {
         preload: function () {
-            /*
-            this.game.load.tilemap('prueba', 'assets/prueba.json', null, Phaser.Tilemap.TILED_JSON);
-            this.game.load.image('tiles', 'assets/scifi.png');
-            this.game.load.spritesheet('elvis', 'assets/Sprite Inicio (50x60).png', 50, 55);
-            this.game.load.image('background', 'assets/sky.png');
-            */
+
         },
 
         create: function () {
@@ -42,9 +37,6 @@
             map = this.game.add.tilemap('prueba');
             map.addTilesetImage('scifi', 'tiles');
 
-
-            //map.setCollisionBetween(322,324);
-
             map.setCollisionBetween(316,319);
             map.setCollisionBetween(299,301);
             map.setCollision(466);
@@ -53,10 +45,18 @@
             layer = map.createLayer('mapa');
             layer.resizeWorld();
 
-            player = this.game.add.sprite(150, 32, 'elvis');
+            player = this.game.add.sprite(32, this.game.world.height - 100, 'elvis');
 
-            //player = this.game.add.sprite(32, this.game.world.height - 50, 'elvis');
+            guitarra = this.game.add.image(300, 100, 'guitarra');
+            //guitarra.enableBody = true;
+            
+            this.game.physics.enable(guitarra);
+            this.game.physics.enable(guitarra, Phaser.Physics.ARCADE);
+            //guitarra.body.gravity.y = 200;
+            //guitarra.body.bounce.y = 0.2;
+            
             this.game.physics.enable(player);
+            
             this.game.physics.enable(player, Phaser.Physics.ARCADE);
 
             player.body.bounce.y = 0.1;
@@ -65,9 +65,9 @@
 
             player.body.gravity.y = 320;
 
-            player.animations.add('left', [0, 1, 2, 3], 10, true);
-            player.animations.add('turn', [4], 20, true);
-            player.animations.add('right', [5, 6, 7, 8], 10, true);
+            player.animations.add('left', [0, 1, 2], 10, true);
+            player.animations.add('turn', [1], 10, true);
+            player.animations.add('right', [4, 5, 6], 10, true);
 
             this.game.camera.follow(player);
 
@@ -84,6 +84,8 @@
         update: function () {
 
             this.game.physics.arcade.collide(player, layer);
+            this.game.physics.arcade.collide(layer, guitarra);
+            this.game.physics.arcade.overlap(player, guitarra);
 
             player.body.velocity.x = 0;
 
