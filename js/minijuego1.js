@@ -13,6 +13,7 @@
     var collision;
     
     var pausa;
+    var sonido;
 
     function minijuego1() {}
 
@@ -119,8 +120,7 @@
             }
 
             if(pausa.isDown){
-                sonido = this.game.add.audio('melodia1');
-                sonido.play();
+                sonido.stop();
                 this.game.physics.arcade.gravity.y = 0;
                 player.body.gravity.y = 0;
                 player.body.velocity.y = 0;
