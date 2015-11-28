@@ -121,8 +121,11 @@
     },
 
     update: function () {
-        jugador.x = this.game.world.width * 0.2;
-        console.log(jugador.x);
+        
+        if(jugador.x != this.game.world.width *0.2)
+            jugador.x = this.game.world.width * 0.2;
+        
+        //console.log(jugador.x);
         
         
         this.game.physics.arcade.collide(jugador, bases);
