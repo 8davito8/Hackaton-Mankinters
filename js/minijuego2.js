@@ -10,7 +10,7 @@ var cact1 , cact2;
 var coche;
 var coche1;
 var position = [];
-var count = 0;
+var count = 1;
  
 var carGroup;
 var obstacleGroup;
@@ -56,7 +56,7 @@ var obstacleDelay = 1400;
         
         position = [coche.x, coche.x - 70];
 
-        cactus = this.game.add.group();7
+        cactus = this.game.add.group();
         cactus.enableBody = true;
         //this.game.input.onDown.add(moveCar);
         
