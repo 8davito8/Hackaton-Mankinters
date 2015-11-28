@@ -44,7 +44,7 @@
 
             //map.setCollisionBetween(322,324);
 
-            map.setCollisionBetween(317,319);
+            map.setCollisionBetween(316,319);
             map.setCollisionBetween(299,301);
             map.setCollision(466);
             map.setCollision(220);
