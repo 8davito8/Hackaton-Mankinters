@@ -224,7 +224,7 @@
 
             textoPuntos.visible = false;
             
-            ganado = this.game.add.sprite(200, 180, 'perdido');
+            ganado = this.game.add.sprite(150, 180, 'perdido');
             /*GameOver = this.game.add.text(this.game.world.centerX - 50, this.game.world.centerY - 12, 'Game Over', {
                 font: "24px Arial",
                 fill: "#000"
