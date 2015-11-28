@@ -38,6 +38,7 @@
     },
 
     create: function () {
+        
         this.game.world.setBounds(0, 0, 640, 480);
 
         juego = this.game;
