@@ -64,7 +64,7 @@
             cact1 = cactus.create(100, -50, 'cactus1');
             cact1.body.velocity.y = 200;
 
-            cact2 = cactus.create(juego.world.width - 100 - 25, -50, 'cactus');
+            cact2 = cactus.create(juego.world.width - 100 - 25, -50, 'cactus1');
             cact2.body.velocity.y = 200;
 
 
