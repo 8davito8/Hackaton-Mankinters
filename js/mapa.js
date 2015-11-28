@@ -15,7 +15,7 @@
             //this.game.load.baseURL = 'http://examples.phaser.io/assets/';
             this.game.load.crossOrigin = 'anonymous';
             this.load.image('backdrop', 'assets/fondoLasVegasB.png');
-            this.game.load.image('player', 'http://examples.phaser.io/assets/sprites/phaser-dude.png');
+            this.game.load.image('player', '/assets/dude.png');
             this.game.load.image('club', 'assets/Stripclub.png');
             this.game.load.image('hotel', 'assets/Hotel.png');
             this.game.load.image('taj', 'assets/TajMahal.png');
@@ -33,6 +33,7 @@
             //player.body.gravity.y = 500;
             player.animations.add('left', [0, 1, 2, 3], 10, true);
             player.animations.add('right', [5, 6, 7, 8], 10, true);
+
             casas = this.game.add.physicsGroup();
 
             casas.create(500, 150, 'club');
@@ -45,24 +46,29 @@
         },
         update: function () {
             this.game.physics.arcade.collide(player, casas);
-
+            var parado = false;
             player.body.velocity.x = 0;
             player.body.velocity.y = 0;
 
             if (cursors.left.isDown) {
                 player.body.velocity.x = -250;
                 player.animations.play('left');
+                parado = true;
             } else if (cursors.right.isDown) {
                 player.body.velocity.x = 250;
                 player.animations.play('right');
-            } else if (cursors.up.isDown) {
+                parado = true;
+            }
+            if (cursors.up.isDown) {
                 player.body.velocity.y = -250;
+                parado = true;
             } else if (cursors.down.isDown) {
                 player.body.velocity.y = 250;
-            } else {
+                parado = true;
+            }
+            if (parado == true) {
                 //  Stand still
                 player.animations.stop();
-
                 player.frame = 4;
             }
         },
