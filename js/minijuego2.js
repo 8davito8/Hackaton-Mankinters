@@ -49,7 +49,6 @@
             this.game.physics.enable(coche, Phaser.Physics.ARCADE);
             coche.body.velocity.y = -20;
 
-
             //COCHE NEGRO
             coche1 = this.game.add.sprite(this.game.world.centerX + 30, this.game.height - 80, "car1");
             this.game.physics.enable(coche1, Phaser.Physics.ARCADE);
@@ -61,8 +60,8 @@
             //CACTUS
             cactus = this.game.add.group();
             cactus.enableBody = true;
-            //this.game.input.onDown.add(moveCar);
 
+            
             cact1 = cactus.create(100, -50, 'cactus1');
             cact1.body.velocity.y = 200;
 
@@ -105,7 +104,7 @@
 
         update: function () {
 
-            //COCHE NEGRO GANA TU PIERDES
+            //TU GANAS EL PIERDE
             if (coche.y <= 0) {
                 Ganar();
             }
