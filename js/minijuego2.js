@@ -2,7 +2,9 @@
   'use strict';
 
 var game;
- 
+
+var carretera;    
+
 var cars = [];
 var carColors = [0xff0000, 0x0000ff];
 var carTurnSpeed = 250;
@@ -27,26 +29,28 @@ var obstacleDelay = 1400;
     },
       
     create: function () {
-          game.add.image(0, 0, "road");
-          game.physics.startSystem(Phaser.Physics.ARCADE);
-          carGroup = game.add.group();
-          obstacleGroup = game.add.group();
-          targetGroup = game.add.group();
+          
+        carretera = this.game.add.image(0, 0, "road");
+        
+          this.game.physics.startSystem(Phaser.Physics.ARCADE);
+          carGroup = this.game.add.group();
+          obstacleGroup = this.game.add.group();
+          targetGroup = this.game.add.group();
           for(var i = 0; i < 2; i++){
-               cars[i] = game.add.sprite(0, game.height - 80, "car");
-               cars[i].positions = [game.width * (i * 4 + 1) / 8, game.width * (i * 4 + 3) / 8];
+               cars[i] = this.game.add.sprite(0, this.game.height - 80, "car");
+               cars[i].positions = [this.game.width * (i * 4 + 1) / 8, this.game.width * (i * 4 + 3) / 8];
                cars[i].anchor.set(0.5);
                cars[i].tint = carColors[i];  
                cars[i].canMove = true;
                cars[i].side = i;
                cars[i].x = cars[i].positions[cars[i].side];
-               game.physics.enable(cars[i], Phaser.Physics.ARCADE); 
+               this.game.physics.enable(cars[i], Phaser.Physics.ARCADE); 
                cars[i].body.allowRotation = false;
                cars[i].body.moves = false;  
                carGroup.add(cars[i]);
           }
-          game.input.onDown.add(moveCar);
-          game.time.events.loop(obstacleDelay, function(){
+          this.game.input.onDown.add(moveCar);
+          this.game.time.events.loop(obstacleDelay, function(){
                for(var i = 0; i < 2; i++){
                     /*if(game.rnd.between(0, 1) == 1){
                          var obstacle = new Obstacle(game, i);
@@ -63,10 +67,10 @@ var obstacleDelay = 1400;
     },
 
     update: function () {
-          game.physics.arcade.collide(carGroup, obstacleGroup, function(){
-               game.state.start("PlayGame");     
+          this.game.physics.arcade.collide(carGroup, obstacleGroup, function(){
+               this.game.state.start("menu");     
           });
-          game.physics.arcade.collide(carGroup, targetGroup, function(c, t){
+          this.game.physics.arcade.collide(carGroup, targetGroup, function(c, t){
                t.destroy();
           });
     }
