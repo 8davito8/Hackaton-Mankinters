@@ -26,12 +26,14 @@
             this.game.load.image('murolateral', 'assets/murolateral.png');
             this.game.load.image('muroarriba', 'assets/muroarriba.png');
             this.game.load.image('cartel', 'assets/cartel.png');
+            this.game.load.image('vacio', 'assets/vacio.png');
             this.game.load.spritesheet('dude', 'assets/spriteInicio.png', 50, 60);
 
         },
         create: function () {
             this.game.world.setBounds(0, 0, 1200, 900);
             this.game.add.sprite(0, 0, 'backdrop');
+            this.game.add.sprite(173, 360, 'vacio');
             player = this.game.add.sprite(400, this.game.world.height-150, 'dude');
             this.game.add.sprite(0,this.game.world.height-411,'cartel');
             this.game.camera.follow(player);
@@ -62,6 +64,7 @@
             cursors = this.game.input.keyboard.createCursorKeys();
         },
         update: function () {
+            this.game.physics.arcade.overlap(player, vacio, pantalla1);
             this.game.physics.arcade.collide(player, muro);
             player.body.velocity.x = 0;
             player.body.velocity.y = 0;
@@ -88,6 +91,9 @@
             }
         },
     };
+    function pantalla1 () {
+        this.game.state.start('minijuego1');
+    }
 
     window['mankinters'] = window['mankinters'] || {};
     window['mankinters'].mapa = mapa;
