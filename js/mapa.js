@@ -16,6 +16,7 @@
             //this.game.stage.backgroundColor = '#85b5e1';
 
             //this.game.load.baseURL = 'http://examples.phaser.io/assets/';
+/*
             this.game.load.crossOrigin = 'anonymous';
             this.load.image('backdrop', 'assets/fondoLasVegas.png');
             this.game.load.image('club', 'assets/Stripclub.png');
@@ -28,6 +29,7 @@
             this.game.load.image('cartel', 'assets/cartel.png');
             this.game.load.image('vacio', 'assets/vacio.png');
             this.game.load.spritesheet('dude', 'assets/spriteInicio.png', 50, 60);
+*/
 
         },
         create: function () {

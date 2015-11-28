@@ -74,7 +74,7 @@
         
         
         // JUGADOR
-        jugador = this.game.add.sprite(this.game.world.width*0.2, this.game.world.height -68 -55, 'dude');
+        jugador = this.game.add.sprite(this.game.world.width*0.2, this.game.world.height -68 -55, 'dude1');
 
         // ACTIVA FISICAS PARA EL JUGADOR
         this.game.physics.arcade.enable(jugador);
