@@ -5,6 +5,7 @@
     var tileset;
     var layer;
     var player;
+    var guitarra;
     var facing = 'left';
     var jumpTimer = 0;
     var cursors;
