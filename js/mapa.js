@@ -7,6 +7,11 @@
     var jumpButton;
     var muro;
     var posicion;
+    
+    var taj;
+    var hotel;
+    var club;
+    
     var arrfinal=[[72,179,'murolateral'],[120,179,'murolateral'],[168,179,'murolateral'],[216,179,'murolateral'],[264,179,'murolateral'],[312,179,'murolateral'],[360,179,'murolateral'],[497.5,179,'murolateral'],[545.5,179,'murolateral'],[593.5,179,'murolateral'],[641.5,179,'murolateral'],[689.5,179,'murolateral'],[832,179,'murolateral'],[880,179,'murolateral'],[928,179,'murolateral'],[976,179,'murolateral'],[1024,179,'murolateral'],[1072,179,'murolateral'],[72,372,'murolateral'],[120,372,'murolateral'],[312,372,'murolateral'],[360,372,'murolateral'],[497.5,372,'murolateral'],[689.5,372,'murolateral'],[832,372,'murolateral'],[880,372,'murolateral'],[1024,372,'murolateral'],[1072,372,'murolateral'],[65,188,'muro'],[403.5,188,'muro'],[490,188,'muro'],[733.5,188,'muro'],[825,188,'muro'],[1115.5,188,'muro'],[65,236,'muro'],[403.5,236,'muro'],[490,236,'muro'],[733.5,236,'muro'],[825,236,'muro'],[1115.5,236,'muro'],[65,284,'muro'],[403.5,284,'muro'],[490,284,'muro'],[733.5,284,'muro'],[825,284,'muro'],[1115.5,284,'muro'],[65,332,'muro'],[403.5,332,'muro'],[490,332,'muro'],[733.5,332,'muro'],[825,332,'muro'],[1115.5,332,'muro'],[65,380,'murofin'],[403.5,380,'murofin'],[490,380,'murofin'],[733.5,380,'murofin'],[825,380,'murofin'],[1115.5,380,'murofin'],[65,179,'muroarriba'],[403.5,179,'muroarriba'],[490,179,'muroarriba'],[733.5,179,'muroarriba'],[825,179,'muroarriba'],[1115.5,179,'muroarriba']];
 
     function mapa() {}
@@ -49,9 +54,13 @@
 
             casas = this.game.add.physicsGroup();
             var taj = casas.create(80, 25, 'taj');
-            taj.body.setSize(372,120, 120, 450);
-            casas.create(510, 13, 'hotel');
-            casas.create(850, 65, 'club');
+            taj.body.setSize(150,0, 50, 310);
+            
+            
+            var hotel = casas.create(510, 13, 'hotel');
+            hotel.body.setSize(210, 0, 50, 300 );
+            
+            var club = casas.create(850, 65, 'club');
             casas.setAll('body.immovable', true);
 
             muro = this.game.add.physicsGroup();
@@ -66,7 +75,7 @@
             cursors = this.game.input.keyboard.createCursorKeys();
         },
         update: function () {
-            this.game.physics.arcade.overlap(player, vacio, pantalla1);
+            //this.game.physics.arcade.overlap(player, vacio, pantalla1);
             this.game.physics.arcade.collide(player, muro);
             this.game.physics.arcade.collide(player, casas);
             player.body.velocity.x = 0;
