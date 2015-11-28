@@ -40,7 +40,7 @@
         this.game.load.image('guitarra', 'assets/Guitarra.png');
         this.game.load.image('tiles', 'assets/scifi.png');
         this.game.load.spritesheet('elvis', 'assets/Sprite_Edificio.png', 50, 60);
-        this.game.load.image('background', 'assets/sky.png');
+        this.game.load.image('background', 'assets/Fondo_Edificio.png');
 
         //MINIJUEGO 2
         this.game.load.image("road", "assets/road.png");

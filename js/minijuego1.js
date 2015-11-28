@@ -77,9 +77,9 @@
 
             player.body.gravity.y = 320;
 
-            player.animations.add('left', [0, 1, 2], 10, true);
+            player.animations.add('right', [0, 1, 2], 10, true);
             player.animations.add('turn', [1], 10, true);
-            player.animations.add('right', [4, 5, 6], 10, true);
+            player.animations.add('left', [4, 5, 6], 10, true);
 
             this.game.camera.follow(player);
 
