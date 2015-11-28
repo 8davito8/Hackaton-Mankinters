@@ -214,7 +214,6 @@
             // SONIDO
             
             sonidod.play();
-            //this.game.sound.setDecodedCallback(sonido, start, this);
 
             jugador.body.velocity.x = 0;
             cactus.setAll('body.velocity.x', 0);
@@ -225,10 +224,6 @@
             textoPuntos.visible = false;
             
             ganado = this.game.add.sprite(150, 180, 'perdido');
-            /*GameOver = this.game.add.text(this.game.world.centerX - 50, this.game.world.centerY - 12, 'Game Over', {
-                font: "24px Arial",
-                fill: "#000"
-            });*/
 
             jugador.frame = 2;
             puntos = 0;
