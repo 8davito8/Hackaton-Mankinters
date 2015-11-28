@@ -53,14 +53,17 @@
             player.animations.add('down', [6, 7, 8], 10, true);
 
             casas = this.game.add.physicsGroup();
-            var taj = casas.create(80, 25, 'taj');
+            taj = casas.create(80, 25, 'taj');
             taj.body.setSize(150,0, 50, 310);
             
             
-            var hotel = casas.create(510, 13, 'hotel');
-            hotel.body.setSize(210, 0, 50, 300 );
+            hotel = casas.create(510, 13, 'hotel');
+            hotel.body.setSize(210, 0, 50, 347 );
             
-            var club = casas.create(850, 65, 'club');
+            club = casas.create(850, 65, 'club');
+            club.body.setSize(256, 0, 50, 287);
+
+            
             casas.setAll('body.immovable', true);
 
             muro = this.game.add.physicsGroup();
@@ -76,6 +79,17 @@
         },
         update: function () {
             //this.game.physics.arcade.overlap(player, vacio, pantalla1);
+            
+            this.game.physics.arcade.collide(player, taj, function(){
+                this.game.state.start('minijuego2');
+            }, null, this);
+            this.game.physics.arcade.collide(player, hotel, function(){
+                this.game.state.start('minijuego1');
+            }, null, this);
+            this.game.physics.arcade.collide(player, club, function(){
+                this.game.state.start('minijuego3');
+            }, null, this);
+            
             this.game.physics.arcade.collide(player, muro);
             this.game.physics.arcade.collide(player, casas);
             player.body.velocity.x = 0;
