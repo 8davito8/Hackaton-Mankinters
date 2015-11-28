@@ -1,127 +1,170 @@
-(function() {
-  'use strict';
+(function () {
+    'use strict';
 
-var juego;
+    var juego;
 
-var carretera; 
-var cactus;
-var cact1 , cact2;
+    var carretera;
+    var cactus;
+    var cact1, cact2;
 
-var coche;
-var coche1;
-var position = [];
-var count = 1;
- 
-var carGroup;
-var obstacleGroup;
-var targetGroup;
- 
-var obstacleSpeed = 150;
-var obstacleDelay = 1400;
+    var coche;
+    var coche1;
+    var position = [];
+    var count = 1;
 
-    
+    var grieta;
+
+    var GameOver;
+
     function minijuego2() {}
 
-  minijuego2.prototype = {
-      
-    preload: function() {
-        this.game.load.image("road", "assets/road.png");
-        this.game.load.image("cactus", "assets/Cactus 1.png");
-        this.game.load.image("target", "assets/target.png");
-        this.game.load.image("car", "assets/car.png");
-        this.game.load.image("obstacle", "assets/obstacle.png");
-    },
-      
-    create: function () {
-        
-        juego = this.game;
-        
-        this.game.stage.backgroundColor = '#F4D868';
-          
-        carretera = this.game.add.image(0, 0, "road");        
-        carretera.x = this.game.world.centerX - carretera.width/2;
-        
-        this.game.physics.startSystem(Phaser.Physics.ARCADE);
-        carGroup = this.game.add.group();
-        obstacleGroup = this.game.add.group();
-        targetGroup = this.game.add.group();
+    minijuego2.prototype = {
 
-        coche = this.game.add.sprite(this.game.world.centerX - 60, this.game.height /2, "car");
-        this.game.physics.enable(coche, Phaser.Physics.ARCADE); 
-        coche.tint = 0xff0000;  
+        preload: function () {
+            this.game.load.image("road", "assets/road.png");
+            this.game.load.image("grieta", "assets/grieta.png");
+            this.game.load.image("cactus", "assets/Cactus 1.png");
+            this.game.load.image("car", "assets/car.png");
+        },
 
-        coche1 = this.game.add.sprite(this.game.world.centerX + 30, this.game.height - 80, "car");
-        this.game.physics.enable(coche1, Phaser.Physics.ARCADE); 
-        coche1.tint = 0x333333;  
-        
-        position = [coche.x, coche.x - 70];
+        create: function () {
 
-        cactus = this.game.add.group();
-        cactus.enableBody = true;
-        //this.game.input.onDown.add(moveCar);
-        
-        cact1 = cactus.create(100, -50, 'cactus');
-        cact1.body.velocity.y = 200;
+            juego = this.game;
 
-        cact2 = cactus.create(juego.world.width -100 -25, -50, 'cactus');
-        cact2.body.velocity.y = 200;
-        
-        this.game.input.onDown.add(this.cambiarCarril);
+            this.game.stage.backgroundColor = '#F4D868';
 
-    },
+            carretera = this.game.add.image(0, 0, "road");
+            carretera.x = this.game.world.centerX - carretera.width / 2;
 
-    update: function () {
-       
-        if(coche.x <= juego.world.centerX - 130 || coche.x >= juego.world.centerX -58){
-            coche.body.velocity.x = 0;
-        }
-        
-        if(cact1.y >= this.game.world.height){
-            cact1.y = -50;
-            cact2.y = -50;
-        }
-        
-        /*this.game.physics.arcade.collide(carGroup, obstacleGroup, function(){
-               this.game.state.start("menu");     
-          });
-          this.game.physics.arcade.collide(carGroup, targetGroup, function(c, t){
-               t.destroy();
-          });*/
-    },
-      
-    cambiarCarril: function() {
-         var steerTween = juego.add.tween(coche).to({
-               angle: 20 - 40 * count
-          }, 250 / 2, Phaser.Easing.Linear.None, true);
-          steerTween.onComplete.add(function(){
-               var steerTween = juego.add.tween(coche).to({
+            this.game.physics.startSystem(Phaser.Physics.ARCADE);
+
+
+            // COCHE ROJO
+            coche = this.game.add.sprite(this.game.world.centerX - 60, this.game.height - 80, "car");
+            this.game.physics.enable(coche, Phaser.Physics.ARCADE);
+            coche.tint = 0xff0000;
+            coche.body.velocity.y = -10;
+
+
+            //COCHE NEGRO
+            coche1 = this.game.add.sprite(this.game.world.centerX + 30, this.game.height - 80, "car");
+            this.game.physics.enable(coche1, Phaser.Physics.ARCADE);
+            coche1.tint = 0x333333;
+
+            // POSICIONES 1 CARRIL U OTRO
+            position = [coche.x - 70, coche.x];
+
+            //CACTUS
+            cactus = this.game.add.group();
+            cactus.enableBody = true;
+            //this.game.input.onDown.add(moveCar);
+
+            cact1 = cactus.create(100, -50, 'cactus');
+            cact1.body.velocity.y = 200;
+
+            cact2 = cactus.create(juego.world.width - 100 - 25, -50, 'cactus');
+            cact2.body.velocity.y = 200;
+
+
+            //GRIETAS PARA ESQUIVAR
+            grieta = this.game.add.group();
+            grieta.enableBody = true;
+
+            //CREAR GRIETAS CADA SEGUNDO Y MEDIO EN CADA CARRIL DE FORMA ALEATORIA
+            this.game.time.events.loop(1500, function () {
+                var gri;
+
+                if (Math.random() > Math.random()) {
+                    gri = grieta.create(juego.world.centerX - 60, -50, 'grieta');
+                } else {
+                    gri = grieta.create(juego.world.centerX - 140, -50, 'grieta');
+                }
+
+                gri.body.velocity.y = 150;
+            });
+
+            //CLICK DE RATON
+            this.game.input.onDown.add(this.cambiarCarril);
+
+            //PONER LOS COCHES DELANTE DE LAS GRIETAS PARA QUE NO PASE LA GRIETA POR ENCIMA
+            this.game.world.swap(grieta, coche);
+        },
+
+        update: function () {
+
+            //COCHE NEGRO GANA TU PIERDES
+            if (coche1.y <= 0) {
+                finish();
+            }
+
+            // ACCION AL TOCAR GRIETAS
+            this.game.physics.arcade.overlap(coche, grieta, this.aceleran, null, this);
+
+            // APARECEN LOS CACTUS OTRA VEZ ARRIBA
+            if (cact1.y >= this.game.world.height) {
+                cact1.y = -50;
+                cact2.y = -50;
+            }
+
+        },
+
+        cambiarCarril: function () {
+
+            //GIRA EL COCHE 20º Y LUEGO LO PONE A 0 
+            var steerTween = juego.add.tween(coche).to({
+                angle: 20 - 40 * count
+            }, 250 / 2, Phaser.Easing.Linear.None, true);
+            steerTween.onComplete.add(function () {
+                juego.add.tween(coche).to({
                     angle: 0
-               }, 250 / 2, Phaser.Easing.Linear.None, true);
-          })
-          coche = 1 - count;
-          var moveTween = juego.add.tween(coche).to({ 
-               x: position[count],
-          }, 250, Phaser.Easing.Linear.None, true);
+                }, 250 / 2, Phaser.Easing.Linear.None, true);
+            }, this);
+            count = 1 - count;
+
+            //MUEVE EL COCHE AL OTRO CARRIL SEGUN EL COUNT
+            var moveTween = juego.add.tween(coche).to({
+                x: position[count],
+            }, 250, Phaser.Easing.Linear.None, true);
+
+        },
+
+        aceleran: function () {
+            //ACELERA EL COCHE NEGRO
+            var moveTween = juego.add.tween(coche1).to({
+                y: coche1.y - 10,
+            }, 250, Phaser.Easing.Linear.None, true);
+
+        }
+
+
+    };
+
+    function finish() {
+        GameOver = juego.add.text(juego.world.centerX - 32, juego.world.centerY - 16, 'Game Over', {
+            font: "24px Arial",
+            fill: "#000"
+        });
+
+        juego.time.events.loop(1000, function () {
+            //this.game.time.events.stop();
+            juego.world.remove(GameOver);
+            juego.state.start('menu');
+        });
     }
-
-  };
-
-function moveCar(e){
- var carToMove = Math.floor(e.position.x / (game.width / 2));
-     if(cars[carToMove].canMove){
-          cars[carToMove].canMove = false;
-          cars[carToMove].side = 1 - cars[carToMove].side;
-          var moveTween = game.add.tween(coche).to({ 
-               x: position[count],
-          }, carTurnSpeed, Phaser.Easing.Linear.None, true);
-          moveTween.onComplete.add(function(){
-               cars[carToMove].canMove = true;
-          })
-     }
-};
-
     
+    function Ganar() {
+        GameOver = juego.add.text(juego.world.centerX - 32, juego.world.centerY - 16, 'Has Ganado', {
+            font: "24px Arial",
+            fill: "#000"
+        });
 
-  window['mankinters'] = window['mankinters'] || {};
-  window['mankinters'].minijuego2 = minijuego2;
+        juego.time.events.loop(1000, function () {
+            //this.game.time.events.stop();
+            juego.world.remove(GameOver);
+            juego.state.start('menu');
+        });    }
+
+
+    window['mankinters'] = window['mankinters'] || {};
+    window['mankinters'].minijuego2 = minijuego2;
 }());
