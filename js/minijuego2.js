@@ -21,10 +21,12 @@
     minijuego2.prototype = {
 
         preload: function () {
+/*
             this.game.load.image("road", "assets/road.png");
             this.game.load.image("grieta", "assets/grieta.png");
             this.game.load.image("cactus", "assets/Cactus 1.png");
             this.game.load.image("car", "assets/car.png");
+*/
         },
 
         create: function () {
@@ -59,7 +61,7 @@
             cactus.enableBody = true;
             //this.game.input.onDown.add(moveCar);
 
-            cact1 = cactus.create(100, -50, 'cactus');
+            cact1 = cactus.create(100, -50, 'cactus1');
             cact1.body.velocity.y = 200;
 
             cact2 = cactus.create(juego.world.width - 100 - 25, -50, 'cactus');
