@@ -19,7 +19,7 @@
 
             this.game.load.tilemap('prueba', 'assets/prueba.json', null, Phaser.Tilemap.TILED_JSON);
             this.game.load.image('tiles', 'assets/scifi.png');
-            this.game.load.spritesheet("dude", "./assets/dude.png", 32, 48);
+            this.game.load.spritesheet('elvis', 'assets/Sprite Minijuego 1 (50x55).png', 50, 55);
             this.game.load.image('background', 'assets/sky.png');
 
         },
@@ -34,15 +34,17 @@
             map = this.game.add.tilemap('prueba');
             map.addTilesetImage('scifi', 'tiles');
 
-            map.setCollision(211);
-            map.setCollision(456);
+            map.setCollisionBetween(211,220);
+            map.setCollisionBetween(317,319);
+            map.setCollision(461);
 
             layer = map.createLayer('mapa');
             layer.resizeWorld();
 
-            this.game.physics.arcade.gravity.y = 550;
+            this.game.physics.arcade.gravity.y = 450;
 
-            player = this.game.add.sprite(32, this.game.world.height - 50, 'dude');
+            player = this.game.add.sprite(150, 32, 'elvis');
+            //player = this.game.add.sprite(32, this.game.world.height - 50, 'elvis');
             this.game.physics.enable(player);
             this.game.physics.enable(player, Phaser.Physics.ARCADE);
 
