@@ -4,6 +4,7 @@
     var juego;
 
     var pausa;
+    var sonido;
     
     var carretera;
     var cactus;
@@ -45,6 +46,10 @@
             this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
 
+            // SONIDO
+            sonido = this.game.add.audio('melodia1');
+            sonido.play();
+            
             // COCHE ROJO
             coche = this.game.add.sprite(this.game.world.centerX - 60, this.game.height - 80, "car");
             this.game.physics.enable(coche, Phaser.Physics.ARCADE);
@@ -121,6 +126,7 @@
             }
 
             if(pausa.isDown){
+                sonido.stop();
                 coche.body.velocity.y = 0;
                 coche.body.velocity.x = 0;
                this.game.state.start('mapa');
@@ -161,6 +167,9 @@
     };
 
     function finish() {
+        
+        sonido.stop();
+        
         GameOver = juego.add.text(juego.world.centerX - 32, juego.world.centerY - 16, 'Game Over', {
             font: "24px Arial",
             fill: "#000"
@@ -174,6 +183,9 @@
     }
     
     function Ganar() {
+        
+        sonido.stop();
+        
         GameOver = juego.add.text(juego.world.centerX - 32, juego.world.centerY - 16, 'Has Ganado', {
             font: "24px Arial",
             fill: "#000"

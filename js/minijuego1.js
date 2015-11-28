@@ -34,6 +34,9 @@
             bg = this.game.add.tileSprite(0, 0, 800, 600, 'background');
             bg.fixedToCamera = true;
 
+            sonido = this.game.add.audio('melodia1');
+            sonido.play();
+            
             map = this.game.add.tilemap('prueba');
             map.addTilesetImage('scifi', 'tiles');
 
@@ -111,6 +114,8 @@
             }
 
             if(pausa.isDown){
+                sonido = this.game.add.audio('melodia1');
+                sonido.play();
                 this.game.physics.arcade.gravity.y = 0;
                 player.body.gravity.y = 0;
                 player.body.velocity.y = 0;

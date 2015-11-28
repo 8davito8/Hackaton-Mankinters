@@ -86,12 +86,15 @@
             //this.game.physics.arcade.overlap(player, vacio, pantalla1);
             
             this.game.physics.arcade.collide(player, taj, function(){
+                musica.stop();
                 this.game.state.start('minijuego2');
             }, null, this);
             this.game.physics.arcade.collide(player, hotel, function(){
+                musica.stop();
                 this.game.state.start('minijuego1');
             }, null, this);
             this.game.physics.arcade.collide(player, club, function(){
+                musica.stop();
                 this.game.state.start('minijuego3');
             }, null, this);
             
