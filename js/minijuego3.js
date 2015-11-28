@@ -11,6 +11,7 @@
 
     var ancho;
     var alto;
+    var sonido;
 
     var juego;
     var cursors;
@@ -50,7 +51,11 @@
         // BACKGROUND
         this.game.stage.backgroundColor = "#87CEEB";
 
-
+        // SONIDO
+        sonido = this.game.add.audio('melodia1');
+        sonido.play();
+        //this.game.sound.setDecodedCallback(sonido, start, this);
+        
         //TEXTO PUNTOS
         textoPuntos = this.game.add.text(32, 16, 'Score: ' + puntos, { font: "24px Arial", fill: "#000" });
 
@@ -60,11 +65,11 @@
 
         //PARTE DEL SUELO
         suelo = bases.create(0, this.game.world.height - 68, 'ground');
-        suelo.body.setSize(640, 0, 62, 6);
+        suelo.body.setSize(640, 0, 62, 8);
 
         //OTRA PARTE DEL SUELO
         suelo2 = bases.create(640, this.game.world.height - 68, 'ground');
-        suelo2.body.setSize(640, 0, 62, 6);
+        suelo2.body.setSize(640, 0, 62, 8);
         
         //suelo.scale.setTo(2,1); // 2. se repite x 2 veces --- 1. No se repite
         suelo.body.immovable = true; //No se puede mover
@@ -152,6 +157,7 @@
         if(pausa.isDown){
             jugador.body.velocity.x = 0;
             jugador.body.velocity.y = 0;
+            sonido.stop();
             this.game.state.start('mapa');
         }
 
@@ -187,9 +193,17 @@
                 cact.scale.setTo(1.50, 1.50);
            }
         }else{
-            var hamb = comida.create(juego.world.width, juego.world.height -64 -22, 'star');
-            hamb.body.velocity.x = -1 * (250 + puntos*0.3);
+            
+            if(Math.random()>Math.random()){
+                var hamb = comida.create(juego.world.width, juego.world.height -64 -22, 'star');
+                hamb.body.velocity.x = -1 * (250 + puntos*0.3);
+                hamb.scale.setTo(2,2);
+            }
         }
+    },
+      
+    start: function() {
+        
     },
 
     subirPuntos: function(jugador, hambb) {
@@ -203,6 +217,7 @@
         cactus.setAll('body.velocity.x', 0);
         comida.setAll('body.velocity.x', 0);
         bases.setAll('body.velocity.x', 0);
+        sonido.stop();
 
         textoPuntos.visible = false;
 
