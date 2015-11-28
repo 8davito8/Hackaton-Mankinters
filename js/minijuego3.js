@@ -21,6 +21,7 @@
     var puntos = 0;
     var sonidov;
     var sonidod;
+    var jumps;
 
 
     function minijuego3() {}
@@ -30,6 +31,7 @@
         preload: function () {
             sonidov = this.game.add.audio('acierto');
             sonidod = this.game.add.audio('fallo');
+            jumps = this.game.add.audio('jump');
         },
 
         create: function () {
@@ -154,6 +156,7 @@
             }
 
             if (cursors.up.isDown && jugador.body.touching.down) {
+                jumps.start();
                 jugador.body.velocity.x = 0;
                 jugador.body.velocity.y = -450;
                 jugador.frame = 4;
