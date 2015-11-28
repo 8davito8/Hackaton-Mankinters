@@ -54,9 +54,11 @@
         bases = this.game.add.group();
         bases.enableBody = true;
 
+        //PARTE DEL SUELO
         suelo = bases.create(0, this.game.world.height - 68, 'ground');
         suelo.body.setSize(640, 0, 62, 6);
 
+        //OTRA PARTE DEL SUELO
         suelo2 = bases.create(640, this.game.world.height - 68, 'ground');
         suelo2.body.setSize(640, 0, 62, 6);
         
@@ -64,8 +66,10 @@
         suelo.body.immovable = true; //No se puede mover
         suelo2.body.immovable = true; //No se puede mover
 
+        //VELOCIDAD A LAS PARTES DEL SUELO
         suelo.body.velocity.x = -250;
         suelo2.body.velocity.x = -250;
+        
         
         // JUGADOR
         jugador = this.game.add.sprite(this.game.world.width*0.2, this.game.world.height -68 -55, 'dude');
@@ -103,9 +107,11 @@
         pausa = this.game.input.keyboard.addKey(Phaser.Keyboard.ESC);
 
 
+        //DAS UN MAXIMO DE VELOCIDAD
         cactus.setAll('body.maxVelocity = 1500', 0);
         comida.setAll('body.maxVelocity = 1500', 0);
 
+        //PONE EL SUELO DELANTE DE LOS CACTUS
         this.game.world.swap(cactus, bases);
 
     },
