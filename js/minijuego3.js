@@ -76,7 +76,7 @@
         
         
         // JUGADOR
-        jugador = this.game.add.sprite(-8000, this.game.world.height -68 -55, 'dude1');
+        jugador = this.game.add.sprite(this.game.world.width*0.2, this.game.world.height -68 -55, 'dude1');
 
         // ACTIVA FISICAS PARA EL JUGADOR
         this.game.physics.arcade.enable(jugador);
@@ -88,6 +88,8 @@
         jugador.body.collideWorldBounds = true; // REBOTE CONTRA BORDES DEL MUNDO
         jugador.body.velocity.x = 250;
 
+        jugador.position.x = this.game.world.width*0.2;
+        
         // ANIMACIONES JUGADOR
         // name, frames, frameRate, loop
         jugador.animations.add('right', [1,2,3], 10, true);
