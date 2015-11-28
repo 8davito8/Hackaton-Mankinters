@@ -25,7 +25,7 @@
         },
 
         create: function () {
-            this.game.world.setBounds(0,0 640, 480);
+            this.game.world.setBounds(0, 0, 640, 480);
             this.game.physics.startSystem(Phaser.Physics.ARCADE);
             this.game.stage.backgroundColor = '#000000';
 
