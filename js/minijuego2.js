@@ -1,13 +1,14 @@
 (function() {
   'use strict';
 
-var game;
+var juego;
 
-var carretera;    
+var carretera; 
+var cactus;
+var cact1 , cact2;
 
-var cars = [];
-var carColors = [0xff0000, 0x0000ff];
-var carTurnSpeed = 250;
+var coche;
+var coche1;
  
 var carGroup;
 var obstacleGroup;
@@ -23,51 +24,53 @@ var obstacleDelay = 1400;
       
     preload: function() {
         this.game.load.image("road", "assets/road.png");
+        this.game.load.image("cactus", "assets/Cactus 1.png");
         this.game.load.image("target", "assets/target.png");
         this.game.load.image("car", "assets/car.png");
         this.game.load.image("obstacle", "assets/obstacle.png");
     },
       
     create: function () {
-          
-        carretera = this.game.add.image(0, 0, "road");
         
-          this.game.physics.startSystem(Phaser.Physics.ARCADE);
-          carGroup = this.game.add.group();
-          obstacleGroup = this.game.add.group();
-          targetGroup = this.game.add.group();
-          for(var i = 0; i < 2; i++){
-               cars[i] = this.game.add.sprite(0, this.game.height - 80, "car");
-               cars[i].positions = [this.game.width * (i * 4 + 1) / 8, this.game.width * (i * 4 + 3) / 8];
-               cars[i].anchor.set(0.5);
-               cars[i].tint = carColors[i];  
-               cars[i].canMove = true;
-               cars[i].side = i;
-               cars[i].x = cars[i].positions[cars[i].side];
-               this.game.physics.enable(cars[i], Phaser.Physics.ARCADE); 
-               cars[i].body.allowRotation = false;
-               cars[i].body.moves = false;  
-               carGroup.add(cars[i]);
-          }
-          this.game.input.onDown.add(moveCar);
-          this.game.time.events.loop(obstacleDelay, function(){
-               for(var i = 0; i < 2; i++){
-                    /*if(game.rnd.between(0, 1) == 1){
-                         var obstacle = new Obstacle(game, i);
-                         game.add.existing(obstacle);
-                         obstacleGroup.add(obstacle);  
-                    }
-                    else{
-                         var target = new Target(game, i);
-                         game.add.existing(target);
-                         targetGroup.add(target);        
-                    }*/
-               }
-          }); 
+        juego = this.game;
+        
+        this.game.stage.backgroundColor = '#F4D868';
+          
+        carretera = this.game.add.image(0, 0, "road");        
+        carretera.x = this.game.world.centerX - carretera.width/2;
+        
+        this.game.physics.startSystem(Phaser.Physics.ARCADE);
+        carGroup = this.game.add.group();
+        obstacleGroup = this.game.add.group();
+        targetGroup = this.game.add.group();
+
+        coche = this.game.add.sprite(this.game.world.centerX - 60, this.game.height /2, "car");
+        this.game.physics.enable(coche, Phaser.Physics.ARCADE); 
+        coche.tint = 0xff0000;  
+
+        coche1 = this.game.add.sprite(this.game.world.centerX + 30, this.game.height - 80, "car");
+        this.game.physics.enable(coche1, Phaser.Physics.ARCADE); 
+        coche1.tint = 0x333333;  
+
+        cactus = this.game.add.group();7
+        cactus.enableBody = true;
+        //this.game.input.onDown.add(moveCar);
+        
+            cact1 = cactus.create(100, -50, 'cactus');
+            cact1.body.velocity.y = 200;
+        
+            cact2 = cactus.create(juego.world.width -100 -25, -50, 'cactus');
+            cact2.body.velocity.y = 200;
+
     },
 
     update: function () {
-          this.game.physics.arcade.collide(carGroup, obstacleGroup, function(){
+          
+        if(cact1.y >= this.game.world.height){
+            cact1.y = -50;
+            cact2.y = -50;
+        }
+        this.game.physics.arcade.collide(carGroup, obstacleGroup, function(){
                this.game.state.start("menu");     
           });
           this.game.physics.arcade.collide(carGroup, targetGroup, function(c, t){
