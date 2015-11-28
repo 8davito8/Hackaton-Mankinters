@@ -55,7 +55,8 @@
             casas = this.game.add.physicsGroup();
             taj = casas.create(80, 25, 'taj');
             taj.body.setSize(150,0, 50, 310);
-            
+            var melodia = game.add.audio('melodia3');
+            game.sound.setDecodedCallback(melodia, start, this);
             
             hotel = casas.create(510, 13, 'hotel');
             hotel.body.setSize(210, 0, 50, 347 );
