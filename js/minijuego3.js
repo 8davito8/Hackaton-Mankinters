@@ -76,7 +76,7 @@
         
         
         // JUGADOR
-        jugador = this.game.add.sprite(80, this.game.world.height -68 -55, 'dude');
+        jugador = this.game.add.sprite(this.game.world.width*0.2, this.game.world.height -68 -55, 'dude1');
 
         // ACTIVA FISICAS PARA EL JUGADOR
         this.game.physics.arcade.enable(jugador);
@@ -88,9 +88,10 @@
         jugador.body.collideWorldBounds = true; // REBOTE CONTRA BORDES DEL MUNDO
         jugador.body.velocity.x = 250;
 
+        
         // ANIMACIONES JUGADOR
         // name, frames, frameRate, loop
-        jugador.animations.add('right', [3, 4, 5], 10, true);
+        jugador.animations.add('right', [0,1,2], 10, true);
         jugador.animations.play('right');
 
 
@@ -117,10 +118,16 @@
 
         //PONE EL SUELO DELANTE DE LOS CACTUS
         this.game.world.swap(cactus, bases);
-
     },
 
     update: function () {
+        
+        if(jugador.x != this.game.world.width *0.2)
+            jugador.x = this.game.world.width * 0.2;
+        
+        //console.log(jugador.x);
+        
+        
         this.game.physics.arcade.collide(jugador, bases);
         this.game.physics.arcade.overlap(jugador, comida, this.subirPuntos, null, this);
         this.game.physics.arcade.overlap(jugador, cactus, this.salirNivel, null, this);
@@ -130,6 +137,8 @@
         
         if(jugador.body.touching.down){
             jugador.body.velocity.x = 250;
+        }else{
+            jugador.frame = 4;
         }
         
         if(suelo.x <= -640){
@@ -149,7 +158,7 @@
         if(cursors.up.isDown && jugador.body.touching.down){
             jugador.body.velocity.x = 0;
             jugador.body.velocity.y = -450;
-            jugador.frame = 2;
+            jugador.frame = 4;
             //jugador.animation.paused = true;
         }
         

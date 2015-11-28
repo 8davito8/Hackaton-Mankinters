@@ -117,9 +117,7 @@
             }
         },
     };
-    function pantalla1 () {
-        this.game.state.start('minijuego1');
-    }
+
 
     window['mankinters'] = window['mankinters'] || {};
     window['mankinters'].mapa = mapa;

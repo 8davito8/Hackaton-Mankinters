@@ -51,11 +51,11 @@
         this.game.load.image("car", "assets/car.png");
         
         //MINIJUEGO 3
-        this.game.load.image("star", "./assets/star.png");
+        this.game.load.image("star", "./assets/Pollo.png");
         this.game.load.image("cactus1", "./assets/Cactus 1.png");
         this.game.load.image("cactus2", "./assets/Cactus 2.png");
         this.game.load.image("ground", "./assets/Suelo.png");
-        this.game.load.spritesheet("dude1", "./assets/Sprite Minijuego 1 (50x55).png", 50, 55);
+        this.game.load.spritesheet("dude1", "./assets/Sprite Minijuego 1 (50x60).png", 50, 60);
     
     },
 
