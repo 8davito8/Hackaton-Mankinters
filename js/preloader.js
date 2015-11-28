@@ -64,6 +64,9 @@
         this.game.load.audio('guitar','assets/musica/guitar.mp3');
         this.game.load.audio('jump','assets/musica/jump.wav');
     
+        //Has ganado y has perdido
+        this.game.load.image("ganado", "./assets/HasGanado.png");
+        this.game.load.image("perdido", "./assets/HasPerdido.png");
     },
 
     create: function () {
