@@ -164,7 +164,7 @@
             sonido.play();
             juego.world.remove(guitarra);
             player.body.velocity.x = 0;
-            ganado = juego.add.sprite(100, 100, 'ganado');
+            ganado = juego.add.sprite(200, 180, 'ganado');
 //            GameOver = juego.add.text(juego.world.centerX - 50, juego.world.centerY - 12, 'Game Over', {
 //                font: "24px Arial",
 //                fill: "#000"

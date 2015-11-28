@@ -15,7 +15,8 @@
     var juego;
     var cursors;
     var pausa;
-
+    var ganado;
+    
     var GameOver;
     var textoPuntos;
     var puntos = 0;
@@ -222,11 +223,12 @@
             
 
             textoPuntos.visible = false;
-
-            GameOver = this.game.add.text(this.game.world.centerX - 50, this.game.world.centerY - 12, 'Game Over', {
+            
+            ganado = this.game.add.sprite(200, 180, 'ganado');
+            /*GameOver = this.game.add.text(this.game.world.centerX - 50, this.game.world.centerY - 12, 'Game Over', {
                 font: "24px Arial",
                 fill: "#000"
-            });
+            });*/
 
             jugador.frame = 2;
             puntos = 0;
