@@ -25,6 +25,20 @@
         //this.load.tilemap('prueba', 'assets/prueba.json', null, Phaser.Tilemap.TILED_JSON);
         //this.load.image('tiles', 'assets/imagenes.png');
 
+        //MAPA
+        this.game.load.crossOrigin = 'anonymous';
+        this.load.image('backdrop', 'assets/fondoLasVegas.png');
+        this.game.load.image('club', 'assets/Stripclub.png');
+        this.game.load.image('hotel', 'assets/Hotel.png');
+        this.game.load.image('taj', 'assets/TajMahal.png');
+        this.game.load.image('muro', 'assets/muro.png');
+        this.game.load.image('murofin', 'assets/murofin.png');
+        this.game.load.image('murolateral', 'assets/murolateral.png');
+        this.game.load.image('muroarriba', 'assets/muroarriba.png');
+        this.game.load.image('cartel', 'assets/cartel.png');
+        this.game.load.image('vacio', 'assets/vacio.png');
+        this.game.load.spritesheet('dude', 'assets/spriteInicio.png', 50, 60);
+
         //MINIJUEGO 1
         this.game.load.tilemap('prueba', 'assets/prueba.json', null, Phaser.Tilemap.TILED_JSON);
         this.game.load.image('tiles', 'assets/scifi.png');
@@ -41,7 +55,7 @@
         this.game.load.image("cactus1", "./assets/Cactus 1.png");
         this.game.load.image("cactus2", "./assets/Cactus 2.png");
         this.game.load.image("ground", "./assets/Suelo.png");
-        this.game.load.spritesheet("dude", "./assets/Sprite Minijuego 1 (50x55).png", 50, 55);
+        this.game.load.spritesheet("dude1", "./assets/Sprite Minijuego 1 (50x55).png", 50, 55);
     
     },
 
