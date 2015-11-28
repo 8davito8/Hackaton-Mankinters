@@ -34,16 +34,19 @@
             map = this.game.add.tilemap('prueba');
             map.addTilesetImage('scifi', 'tiles');
 
-            map.setCollisionBetween(211,220);
+
+            //map.setCollisionBetween(322,324);
+
             map.setCollisionBetween(317,319);
-            map.setCollision(461);
+            map.setCollisionBetween(299,301);
+            map.setCollision(466);
+            map.setCollision(220);
 
             layer = map.createLayer('mapa');
             layer.resizeWorld();
 
-            this.game.physics.arcade.gravity.y = 450;
-
             player = this.game.add.sprite(150, 32, 'elvis');
+
             //player = this.game.add.sprite(32, this.game.world.height - 50, 'elvis');
             this.game.physics.enable(player);
             this.game.physics.enable(player, Phaser.Physics.ARCADE);
@@ -51,6 +54,8 @@
             player.body.bounce.y = 0.2;
             player.body.collideWorldBounds = true;
             player.body.setSize(20, 32, 5, 16);
+
+            player.body.gravity.y = 450;
 
             player.animations.add('left', [0, 1, 2, 3], 10, true);
             player.animations.add('turn', [4], 20, true);
