@@ -1,6 +1,8 @@
 (function() {
   'use strict';
 
+    var Cargando;
+    
   function Preloader() {
     this.asset = null;
     this.ready = false;
@@ -11,8 +13,8 @@
       this.asset = this.add.sprite(this.game.width * 0.5 - 110, this.game.height * 0.5 - 10, 'preloader');
       this.load.setPreloadSprite(this.asset);
 
-      // this.load.onLoadComplete.addOnce(this.onLoadComplete, this);
-      // this.loadResources();
+      this.load.onLoadComplete.addOnce(this.onLoadComplete, this);
+      this.loadResources();
 
       this.ready = false;
     },
@@ -20,8 +22,8 @@
     loadResources: function () {
 
 // load your assets here
-        this.load.tilemap('prueba', 'assets/prueba.json', null, Phaser.Tilemap.TILED_JSON);
-        this.load.image('tiles', 'assets/imagenes.png');
+        //this.load.tilemap('prueba', 'assets/prueba.json', null, Phaser.Tilemap.TILED_JSON);
+        //this.load.image('tiles', 'assets/imagenes.png');
 
         //MINIJUEGO 1
         this.game.load.tilemap('prueba', 'assets/prueba.json', null, Phaser.Tilemap.TILED_JSON);
@@ -44,17 +46,21 @@
     },
 
     create: function () {
-
+        Cargando = this.game.add.text(this.game.world.centerX - 50, this.game.world.centerY - 40, 'CARGANDO...', { 
+            font: "24px Arial",
+            fill: "#FFF"
+        });
     },
 
     update: function () {
-      if (!!this.ready) {
+      if (this.ready) {
         this.game.state.start('menu');
       }
     },
 
     onLoadComplete: function () {
-      this.ready = true;
+        this.game.world.remove(Cargando);
+        this.ready = true;
     }
   };
 
