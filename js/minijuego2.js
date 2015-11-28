@@ -18,6 +18,8 @@
     var grieta;
 
     var GameOver;
+    var ganado;
+    var perdido;
 
     function minijuego2() {}
 
@@ -165,11 +167,11 @@
     function finish() {
         
         sonido.stop();
-        
-        GameOver = juego.add.text(juego.world.centerX - 32, juego.world.centerY - 16, 'Game Over', {
-            font: "24px Arial",
-            fill: "#000"
-        });
+        perdido =
+//        GameOver = juego.add.text(juego.world.centerX - 32, juego.world.centerY - 16, 'Game Over', {
+//            font: "24px Arial",
+//            fill: "#000"
+//        });
 
         juego.time.events.loop(1000, function () {
             //this.game.time.events.stop();
@@ -181,11 +183,11 @@
     function Ganar() {
         
         sonido.stop();
-        
-        GameOver = juego.add.text(juego.world.centerX - 32, juego.world.centerY - 16, 'Has Ganado', {
-            font: "24px Arial",
-            fill: "#000"
-        });
+        ganado = ;
+//        GameOver = juego.add.text(juego.world.centerX - 32, juego.world.centerY - 16, 'Has Ganado', {
+//            font: "24px Arial",
+//            fill: "#000"
+//        });
 
         juego.time.events.loop(1000, function () {
             juego.world.remove(GameOver);
