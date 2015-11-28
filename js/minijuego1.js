@@ -11,6 +11,8 @@
     var jumpButton;
     var bg;
     var collision;
+    
+    var pausa;
 
     function minijuego1() {}
 
@@ -61,6 +63,10 @@
 
             cursors = this.game.input.keyboard.createCursorKeys();
             jumpButton = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+            
+            //TECLA PARA PAUSA
+            pausa = this.game.input.keyboard.addKey(Phaser.Keyboard.ESC);
+
 
 
         },
@@ -98,9 +104,14 @@
                     facing = 'idle';
                 }
             }
+            
             if (jumpButton.isDown && player.body.onFloor() && this.game.time.now > jumpTimer) {
                 player.body.velocity.y = -250;
                 jumpTimer = this.game.time.now + 350;
+            }
+
+            if(pausa.isDown){
+                this.game.state.start('mapa');
             }
         },
 

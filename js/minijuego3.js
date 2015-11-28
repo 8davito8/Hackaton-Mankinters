@@ -140,7 +140,7 @@
         }        
 
         if(pausa.isDown){
-            this.game.state.start('menu');
+            this.game.state.start('mapa');
         }
 
         if(cursors.up.isDown && jugador.body.touching.down){
@@ -199,12 +199,12 @@
         this.game.time.events.loop(1000, function(){
             //this.game.time.events.stop();
             juego.world.remove(GameOver);
-            juego.state.start('menu');
+            juego.state.start('mapa');
         });
     },
 
     onInputDown: function () {
-      this.game.state.start('menu');
+      this.game.state.start('mapa');
     }
   };
 

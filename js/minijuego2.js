@@ -3,6 +3,8 @@
 
     var juego;
 
+    var pausa;
+    
     var carretera;
     var cactus;
     var cact1, cact2;
@@ -92,6 +94,9 @@
 
             //PONER LOS COCHES DELANTE DE LAS GRIETAS PARA QUE NO PASE LA GRIETA POR ENCIMA
             this.game.world.swap(grieta, coche);
+            
+            // TECLA PARA PAUSA
+            pausa = this.game.input.keyboard.addKey(Phaser.Keyboard.ESC);
         },
 
         update: function () {
@@ -115,6 +120,10 @@
                 cact2.y = -50;
             }
 
+            if(pausa.isDown){
+                this.game.state.start('mapa');
+            }
+
         },
 
         cambiarCarril: function () {
@@ -134,6 +143,7 @@
             var moveTween = juego.add.tween(coche).to({
                 x: position[count],
             }, 250, Phaser.Easing.Linear.None, true);
+
 
         },
 
