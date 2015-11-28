@@ -49,7 +49,7 @@
             coche = this.game.add.sprite(this.game.world.centerX - 60, this.game.height - 80, "car");
             this.game.physics.enable(coche, Phaser.Physics.ARCADE);
             coche.tint = 0xff0000;
-            coche.body.velocity.y = -10;
+            coche.body.velocity.y = -20;
 
 
             //COCHE NEGRO
@@ -152,7 +152,7 @@
         aceleran: function () {
             //ACELERA EL COCHE NEGRO
             var moveTween = juego.add.tween(coche1).to({
-                y: coche1.y - 10,
+                y: coche1.y - 20,
             }, 250, Phaser.Easing.Linear.None, true);
 
         }
