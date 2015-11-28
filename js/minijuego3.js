@@ -11,6 +11,7 @@
 
     var ancho;
     var alto;
+    var sonido;
 
     var juego;
     var cursors;
@@ -27,15 +28,19 @@
 
     preload: function() {
 
+/*
         this.game.load.image("star", "./assets/star.png");
         this.game.load.image("cactus1", "./assets/Cactus 1.png");
         this.game.load.image("cactus2", "./assets/Cactus 2.png");
         this.game.load.image("ground", "./assets/Suelo.png");
         this.game.load.spritesheet("dude", "./assets/Sprite Minijuego 1 (50x55).png", 50, 55);
+*/
 
     },
 
     create: function () {
+        
+        this.game.world.setBounds(0, 0, 640, 480);
 
         juego = this.game;
 
@@ -46,7 +51,11 @@
         // BACKGROUND
         this.game.stage.backgroundColor = "#87CEEB";
 
-
+        // SONIDO
+        sonido = this.game.add.audio('melodia1');
+        sonido.play();
+        //this.game.sound.setDecodedCallback(sonido, start, this);
+        
         //TEXTO PUNTOS
         textoPuntos = this.game.add.text(32, 16, 'Score: ' + puntos, { font: "24px Arial", fill: "#000" });
 
@@ -56,11 +65,11 @@
 
         //PARTE DEL SUELO
         suelo = bases.create(0, this.game.world.height - 68, 'ground');
-        suelo.body.setSize(640, 0, 62, 6);
+        suelo.body.setSize(640, 0, 62, 8);
 
         //OTRA PARTE DEL SUELO
         suelo2 = bases.create(640, this.game.world.height - 68, 'ground');
-        suelo2.body.setSize(640, 0, 62, 6);
+        suelo2.body.setSize(640, 0, 62, 8);
         
         //suelo.scale.setTo(2,1); // 2. se repite x 2 veces --- 1. No se repite
         suelo.body.immovable = true; //No se puede mover
@@ -72,7 +81,7 @@
         
         
         // JUGADOR
-        jugador = this.game.add.sprite(this.game.world.width*0.2, this.game.world.height -68 -55, 'dude');
+        jugador = this.game.add.sprite(this.game.world.width*0.2, this.game.world.height -68 -55, 'dude1');
 
         // ACTIVA FISICAS PARA EL JUGADOR
         this.game.physics.arcade.enable(jugador);
@@ -84,9 +93,10 @@
         jugador.body.collideWorldBounds = true; // REBOTE CONTRA BORDES DEL MUNDO
         jugador.body.velocity.x = 250;
 
+        
         // ANIMACIONES JUGADOR
         // name, frames, frameRate, loop
-        jugador.animations.add('right', [1,2,3], 10, true);
+        jugador.animations.add('right', [0,1,2], 10, true);
         jugador.animations.play('right');
 
 
@@ -113,10 +123,16 @@
 
         //PONE EL SUELO DELANTE DE LOS CACTUS
         this.game.world.swap(cactus, bases);
-
     },
 
     update: function () {
+        
+        if(jugador.x != this.game.world.width *0.2)
+            jugador.x = this.game.world.width * 0.2;
+        
+        //console.log(jugador.x);
+        
+        
         this.game.physics.arcade.collide(jugador, bases);
         this.game.physics.arcade.overlap(jugador, comida, this.subirPuntos, null, this);
         this.game.physics.arcade.overlap(jugador, cactus, this.salirNivel, null, this);
@@ -126,24 +142,29 @@
         
         if(jugador.body.touching.down){
             jugador.body.velocity.x = 250;
+        }else{
+            jugador.frame = 4;
         }
         
         if(suelo.x <= -640){
-            suelo.x = 639;
+            suelo.x = 640;
         }
         
         if(suelo2.x <= -640){
-            suelo2.x = 639;
+            suelo2.x = 640;
         }        
 
         if(pausa.isDown){
-            this.game.state.start('menu');
+            jugador.body.velocity.x = 0;
+            jugador.body.velocity.y = 0;
+            sonido.stop();
+            this.game.state.start('mapa');
         }
 
         if(cursors.up.isDown && jugador.body.touching.down){
             jugador.body.velocity.x = 0;
             jugador.body.velocity.y = -450;
-            jugador.frame = 2;
+            jugador.frame = 4;
             //jugador.animation.paused = true;
         }
         
@@ -162,14 +183,27 @@
             if(Math.random() > Math.random()){ //65 TAMAÑO SUELO, 50 O 25 TAMAÑO CACTUS
                 var cact = cactus.create(juego.world.width, juego.world.height -62 -50, 'cactus1');
                 cact.body.velocity.x = -1 * (250 + puntos*0.3);
-            }else{
-                var cact = cactus.create(juego.world.width, juego.world.height -62 -25, 'cactus2');
+            }else if(Math.random()<Math.random()){
+                var cact = cactus.create(juego.world.width, juego.world.height -62 -37.5, 'cactus1');
                 cact.body.velocity.x = -1 * (250 + puntos*0.3);
-            }
+                cact.scale.setTo(0.75, 0.75);
+           }else{
+                var cact = cactus.create(juego.world.width, juego.world.height -62 -75, 'cactus1');
+                cact.body.velocity.x = -1 * (250 + puntos*0.3);
+                cact.scale.setTo(1.50, 1.50);
+           }
         }else{
-            var hamb = comida.create(juego.world.width, juego.world.height -64 -22, 'star');
-            hamb.body.velocity.x = -1 * (250 + puntos*0.3);
+            
+            if(Math.random()>Math.random()){
+                var hamb = comida.create(juego.world.width, juego.world.height -64 -22, 'star');
+                hamb.body.velocity.x = -1 * (250 + puntos*0.3);
+                hamb.scale.setTo(2,2);
+            }
         }
+    },
+      
+    start: function() {
+        
     },
 
     subirPuntos: function(jugador, hambb) {
@@ -179,10 +213,11 @@
 
     salirNivel: function(jugador, cac) {
 
+        jugador.body.velocity.x = 0;
         cactus.setAll('body.velocity.x', 0);
         comida.setAll('body.velocity.x', 0);
         bases.setAll('body.velocity.x', 0);
-        jugador.body.velocity.x = 0;
+        sonido.stop();
 
         textoPuntos.visible = false;
 
@@ -196,12 +231,12 @@
         this.game.time.events.loop(1000, function(){
             //this.game.time.events.stop();
             juego.world.remove(GameOver);
-            juego.state.start('menu');
+            juego.state.start('mapa');
         });
     },
 
     onInputDown: function () {
-      this.game.state.start('menu');
+      this.game.state.start('mapa');
     }
   };
 

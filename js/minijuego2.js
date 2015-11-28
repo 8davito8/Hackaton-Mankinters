@@ -3,6 +3,9 @@
 
     var juego;
 
+    var pausa;
+    var sonido;
+    
     var carretera;
     var cactus;
     var cact1, cact2;
@@ -21,13 +24,17 @@
     minijuego2.prototype = {
 
         preload: function () {
+/*
             this.game.load.image("road", "assets/road.png");
             this.game.load.image("grieta", "assets/grieta.png");
             this.game.load.image("cactus", "assets/Cactus 1.png");
             this.game.load.image("car", "assets/car.png");
+*/
         },
 
         create: function () {
+            
+            this.game.world.setBounds(0, 0, 640, 480);
 
             juego = this.game;
 
@@ -39,15 +46,19 @@
             this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
 
+            // SONIDO
+            sonido = this.game.add.audio('melodia1');
+            sonido.play();
+            
             // COCHE ROJO
             coche = this.game.add.sprite(this.game.world.centerX - 60, this.game.height - 80, "car");
             this.game.physics.enable(coche, Phaser.Physics.ARCADE);
-            coche.tint = 0xff0000;
-            coche.body.velocity.y = -10;
+            //coche.tint = 0xff0000;
+            coche.body.velocity.y = -20;
 
 
             //COCHE NEGRO
-            coche1 = this.game.add.sprite(this.game.world.centerX + 30, this.game.height - 80, "car");
+            coche1 = this.game.add.sprite(this.game.world.centerX + 30, this.game.height - 80, "car1");
             this.game.physics.enable(coche1, Phaser.Physics.ARCADE);
             coche1.tint = 0x333333;
 
@@ -59,10 +70,10 @@
             cactus.enableBody = true;
             //this.game.input.onDown.add(moveCar);
 
-            cact1 = cactus.create(100, -50, 'cactus');
+            cact1 = cactus.create(100, -50, 'cactus1');
             cact1.body.velocity.y = 200;
 
-            cact2 = cactus.create(juego.world.width - 100 - 25, -50, 'cactus');
+            cact2 = cactus.create(juego.world.width - 100 - 25, -50, 'cactus1');
             cact2.body.velocity.y = 200;
 
 
@@ -79,7 +90,7 @@
                 } else {
                     gri = grieta.create(juego.world.centerX - 140, -50, 'grieta');
                 }
-
+                gri.scale.setTo(0.15, 0.15);
                 gri.body.velocity.y = 150;
             });
 
@@ -88,6 +99,9 @@
 
             //PONER LOS COCHES DELANTE DE LAS GRIETAS PARA QUE NO PASE LA GRIETA POR ENCIMA
             this.game.world.swap(grieta, coche);
+            
+            // TECLA PARA PAUSA
+            pausa = this.game.input.keyboard.addKey(Phaser.Keyboard.ESC);
         },
 
         update: function () {
@@ -107,8 +121,15 @@
 
             // APARECEN LOS CACTUS OTRA VEZ ARRIBA
             if (cact1.y >= this.game.world.height) {
-                cact1.y = -50;
-                cact2.y = -50;
+                cact1.y = (Math.random()*10+5)-50;
+                cact2.y = (Math.random()*12+3)-50;
+            }
+
+            if(pausa.isDown){
+                sonido.stop();
+                coche.body.velocity.y = 0;
+                coche.body.velocity.x = 0;
+               this.game.state.start('mapa');
             }
 
         },
@@ -131,12 +152,13 @@
                 x: position[count],
             }, 250, Phaser.Easing.Linear.None, true);
 
+
         },
 
         aceleran: function () {
             //ACELERA EL COCHE NEGRO
             var moveTween = juego.add.tween(coche1).to({
-                y: coche1.y - 10,
+                y: coche1.y - 20,
             }, 250, Phaser.Easing.Linear.None, true);
 
         }
@@ -145,6 +167,9 @@
     };
 
     function finish() {
+        
+        sonido.stop();
+        
         GameOver = juego.add.text(juego.world.centerX - 32, juego.world.centerY - 16, 'Game Over', {
             font: "24px Arial",
             fill: "#000"
@@ -153,11 +178,14 @@
         juego.time.events.loop(1000, function () {
             //this.game.time.events.stop();
             juego.world.remove(GameOver);
-            juego.state.start('menu');
+            juego.state.start('mapa');
         });
     }
     
     function Ganar() {
+        
+        sonido.stop();
+        
         GameOver = juego.add.text(juego.world.centerX - 32, juego.world.centerY - 16, 'Has Ganado', {
             font: "24px Arial",
             fill: "#000"
@@ -166,7 +194,7 @@
         juego.time.events.loop(1000, function () {
             //this.game.time.events.stop();
             juego.world.remove(GameOver);
-            juego.state.start('menu');
+            juego.state.start('mapa');
         });
     }
 

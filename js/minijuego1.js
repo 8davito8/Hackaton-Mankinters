@@ -11,26 +11,32 @@
     var jumpButton;
     var bg;
     var collision;
+    
+    var pausa;
 
     function minijuego1() {}
 
     minijuego1.prototype = {
         preload: function () {
-
+            /*
             this.game.load.tilemap('prueba', 'assets/prueba.json', null, Phaser.Tilemap.TILED_JSON);
             this.game.load.image('tiles', 'assets/scifi.png');
-            this.game.load.spritesheet('elvis', 'assets/Sprite Minijuego 1 (50x55).png', 50, 55);
+            this.game.load.spritesheet('elvis', 'assets/Sprite Inicio (50x60).png', 50, 55);
             this.game.load.image('background', 'assets/sky.png');
-
+            */
         },
 
         create: function () {
+            this.game.world.setBounds(0, 0, 640, 480);
             this.game.physics.startSystem(Phaser.Physics.ARCADE);
             this.game.stage.backgroundColor = '#000000';
 
             bg = this.game.add.tileSprite(0, 0, 800, 600, 'background');
             bg.fixedToCamera = true;
 
+            sonido = this.game.add.audio('melodia1');
+            sonido.play();
+            
             map = this.game.add.tilemap('prueba');
             map.addTilesetImage('scifi', 'tiles');
 
@@ -65,6 +71,10 @@
 
             cursors = this.game.input.keyboard.createCursorKeys();
             jumpButton = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+            
+            //TECLA PARA PAUSA
+            pausa = this.game.input.keyboard.addKey(Phaser.Keyboard.ESC);
+
 
 
         },
@@ -102,14 +112,25 @@
                     facing = 'idle';
                 }
             }
+            
             if (jumpButton.isDown && player.body.onFloor() && this.game.time.now > jumpTimer) {
                 player.body.velocity.y = -250;
                 jumpTimer = this.game.time.now + 350;
             }
+
+            if(pausa.isDown){
+                sonido = this.game.add.audio('melodia1');
+                sonido.play();
+                this.game.physics.arcade.gravity.y = 0;
+                player.body.gravity.y = 0;
+                player.body.velocity.y = 0;
+                player.body.velocity.x = 0;
+                this.game.state.start('mapa');
+            }
         },
 
         onInputDown: function () {
-            this.game.state.start('menu');
+            this.game.state.start('mapa');
         }
     };
 
