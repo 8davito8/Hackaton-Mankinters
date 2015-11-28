@@ -90,6 +90,9 @@
             //CLICK DE RATON
             this.game.input.onDown.add(this.cambiarCarril);
 
+            var cursors = this.game.input.keyboard.createCursorKeys();
+            cursors.right.onDown.add(this.cambiarCarril);
+
             //PONER LOS COCHES DELANTE DE LAS GRIETAS PARA QUE NO PASE LA GRIETA POR ENCIMA
             this.game.world.swap(grieta, coche);
             
@@ -119,7 +122,6 @@
             }
 
             if(pausa.isDown){
-                sonido.stop();
                 coche.body.velocity.y = 0;
                 coche.body.velocity.x = 0;
                this.game.state.start('mapa');
