@@ -1,0 +1,11 @@
+.game{
+    margin-top: 50px;
+    background: url('../images/vegas.jpg');
+    background-size: contain;
+    background-repeat: repeat-x;
+    background-position: left bottom;
+}
+
+body{
+    background-color: #060606;
+}
