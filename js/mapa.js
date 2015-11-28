@@ -41,7 +41,7 @@
             this.game.world.setBounds(0, 0, 1200, 900);
             this.game.add.sprite(0, 0, 'backdrop');
             player = this.game.add.sprite(400, this.game.world.height-150, 'dude');
-            this.game.add.sprite(0,this.game.world.height-411,'cartel');
+            this.game.add.sprite(0,this.game.world.height-411, 'cartel');
             this.game.camera.follow(player);
             this.game.physics.arcade.enable(player);
 
