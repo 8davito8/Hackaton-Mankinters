@@ -27,7 +27,7 @@
             this.game.load.image('murolateral', 'assets/murolateral.png');
             this.game.load.image('muroarriba', 'assets/muroarriba.png');
             this.game.load.image('cartel', 'assets/cartel.png');
-            this.game.load.image('vacio', 'assets/vacio.png');
+            this.game.load.image('vacio', 'assets/lleno.png');
             this.game.load.spritesheet('dude', 'assets/spriteInicio.png', 50, 60);
 */
 
