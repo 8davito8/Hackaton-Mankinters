@@ -168,7 +168,7 @@
     function finish() {
         
         sonido.stop();
-        perdido = juego.add.sprite(200, 180, 'perdido');
+        perdido = juego.add.sprite(juego.world.centerX -200, 180, 'perdido');
 //        GameOver = juego.add.text(juego.world.centerX - 32, juego.world.centerY - 16, 'Game Over', {
 //            font: "24px Arial",
 //            fill: "#000"
@@ -184,7 +184,7 @@
     function Ganar() {
         
         sonido.stop();
-        ganado = juego.add.sprite(200, 180, 'ganado');;
+        ganado = juego.add.sprite(juego.world.centerX -200, 180, 'ganado');;
 //        GameOver = juego.add.text(juego.world.centerX - 32, juego.world.centerY - 16, 'Has Ganado', {
 //            font: "24px Arial",
 //            fill: "#000"
