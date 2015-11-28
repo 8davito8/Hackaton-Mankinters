@@ -177,10 +177,15 @@
             if(Math.random() > Math.random()){ //65 TAMAÑO SUELO, 50 O 25 TAMAÑO CACTUS
                 var cact = cactus.create(juego.world.width, juego.world.height -62 -50, 'cactus1');
                 cact.body.velocity.x = -1 * (250 + puntos*0.3);
-            }else{
-                var cact = cactus.create(juego.world.width, juego.world.height -62 -25, 'cactus2');
+            }else if(Math.random()<Math.random()){
+                var cact = cactus.create(juego.world.width, juego.world.height -62 -37.5, 'cactus1');
                 cact.body.velocity.x = -1 * (250 + puntos*0.3);
-            }
+                cact.scale.setTo(0.75, 0.75);
+           }else{
+                var cact = cactus.create(juego.world.width, juego.world.height -62 -75, 'cactus1');
+                cact.body.velocity.x = -1 * (250 + puntos*0.3);
+                cact.scale.setTo(1.50, 1.50);
+           }
         }else{
             var hamb = comida.create(juego.world.width, juego.world.height -64 -22, 'star');
             hamb.body.velocity.x = -1 * (250 + puntos*0.3);
