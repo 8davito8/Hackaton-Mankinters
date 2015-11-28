@@ -92,6 +92,9 @@
 
             var cursors = this.game.input.keyboard.createCursorKeys();
             cursors.right.onDown.add(this.cambiarCarril);
+            cursors.up.onDown.add(this.cambiarCarril);
+            cursors.down.onDown.add(this.cambiarCarril);
+            cursors.left.onDown.add(this.cambiarCarril);
 
             //PONER LOS COCHES DELANTE DE LAS GRIETAS PARA QUE NO PASE LA GRIETA POR ENCIMA
             this.game.world.swap(grieta, coche);
