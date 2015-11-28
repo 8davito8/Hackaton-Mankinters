@@ -11,7 +11,6 @@
 
     var ancho;
     var alto;
-    var sonido;
 
     var juego;
     var cursors;
@@ -20,6 +19,8 @@
     var GameOver;
     var textoPuntos;
     var puntos = 0;
+    var sonidov;
+    var sonidod;
 
 
     function minijuego3() {}
@@ -27,7 +28,9 @@
     minijuego3.prototype = {
 
         preload: function () {
-
+            sonidov = this.game.add.audio('acierto');
+            sonidod = this.game.add.audio('fallo');
+            
             /*
                     this.game.load.image("star", "./assets/star.png");
                     this.game.load.image("cactus1", "./assets/Cactus 1.png");
@@ -207,8 +210,8 @@
 
         subirPuntos: function (jugador, hambb) {
             // SONIDO
-            sonido = this.game.add.audio('victoria');
-            sonido.play();
+            
+            sonidov.play();
             //this.game.sound.setDecodedCallback(sonido, start, this);
 
             puntos += 50;
@@ -218,15 +221,15 @@
         salirNivel: function (jugador, cac) {
 
             // SONIDO
-            sonido = this.game.add.audio('derrota');
-            sonido.play();
+            
+            sonidod.play();
             //this.game.sound.setDecodedCallback(sonido, start, this);
 
             jugador.body.velocity.x = 0;
             cactus.setAll('body.velocity.x', 0);
             comida.setAll('body.velocity.x', 0);
             bases.setAll('body.velocity.x', 0);
-            sonido.stop();
+            
 
             textoPuntos.visible = false;
 

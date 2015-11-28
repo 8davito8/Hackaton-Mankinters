@@ -62,7 +62,7 @@
             this.game.sound.setDecodedCallback(melodia, start, this);*/
             
             hotel = casas.create(510, 13, 'hotel');
-            hotel.body.setSize(210, 0, 50, 347 );
+            hotel.body.setSize(120, 0, 50, 347 );
             
             club = casas.create(850, 65, 'club');
             club.body.setSize(256, 0, 50, 287);
