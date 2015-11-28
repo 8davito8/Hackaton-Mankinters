@@ -56,11 +56,13 @@ var obstacleDelay = 1400;
         cactus.enableBody = true;
         //this.game.input.onDown.add(moveCar);
         
-            cact1 = cactus.create(100, -50, 'cactus');
-            cact1.body.velocity.y = 200;
+        cact1 = cactus.create(100, -50, 'cactus');
+        cact1.body.velocity.y = 200;
+
+        cact2 = cactus.create(juego.world.width -100 -25, -50, 'cactus');
+        cact2.body.velocity.y = 200;
         
-            cact2 = cactus.create(juego.world.width -100 -25, -50, 'cactus');
-            cact2.body.velocity.y = 200;
+        this.game.input.onDown.add(this.cambiarCarril);
 
     },
 
@@ -76,12 +78,23 @@ var obstacleDelay = 1400;
           this.game.physics.arcade.collide(carGroup, targetGroup, function(c, t){
                t.destroy();
           });
+    },
+      
+    cambiarCarril: function() {
+        var steerTween = juego.add.tween(coche).to({
+            angle: 20 - 40 * coche.side
+        }, 250 / 2, Phaser.Easing.Linear.None, true);
+        steerTween.onComplete.add(function(){
+               var steerTween = juego.add.tween(cars[carToMove]).to({
+                    angle: 0
+               }, carTurnSpeed / 2, Phaser.Easing.Linear.None, true);
+        });
     }
 
   };
 
 function moveCar(e){
-     var carToMove = Math.floor(e.position.x / (game.width / 2));
+     var carToMove = Math.floor(coche.position.x / (this.game.width / 2));
      if(cars[carToMove].canMove){
           cars[carToMove].canMove = false;
           var steerTween = game.add.tween(cars[carToMove]).to({
