@@ -23,12 +23,6 @@
 
         },
         create: function () {
-            //            this.input.onDown.add(this.onInputDown, this);
-            //
-            //            this.this.game.physics.startSystem(Phaser.Physics.ARCADE);
-            //            this.this.game.stage.backgroundColor = '#000000';
-            //
-            //            var bg = this.this.game.add.tileSprite(0, 0, 800, 600, 'background');
             this.game.world.setBounds(0, 0, 1200, 900);
             this.game.add.sprite(0, 0, 'backdrop');
             player = this.game.add.sprite(100, 200, 'dude');
