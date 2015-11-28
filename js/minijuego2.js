@@ -20,10 +20,10 @@ var obstacleDelay = 1400;
   minijuego2.prototype = {
       
     preload: function() {
-        this.game.load.image("road", "road.png");
-        this.game.load.image("target", "target.png");
-        this.game.load.image("car", "car.png");
-        this.game.load.image("obstacle", "obstacle.png");
+        this.game.load.image("road", "assets/road.png");
+        this.game.load.image("target", "assets/target.png");
+        this.game.load.image("car", "assets/car.png");
+        this.game.load.image("obstacle", "assets/obstacle.png");
     },
       
     create: function () {
@@ -48,7 +48,7 @@ var obstacleDelay = 1400;
           game.input.onDown.add(moveCar);
           game.time.events.loop(obstacleDelay, function(){
                for(var i = 0; i < 2; i++){
-                    if(game.rnd.between(0, 1) == 1){
+                    /*if(game.rnd.between(0, 1) == 1){
                          var obstacle = new Obstacle(game, i);
                          game.add.existing(obstacle);
                          obstacleGroup.add(obstacle);  
@@ -57,7 +57,7 @@ var obstacleDelay = 1400;
                          var target = new Target(game, i);
                          game.add.existing(target);
                          targetGroup.add(target);        
-                    }
+                    }*/
                }
           }); 
     },
@@ -95,41 +95,8 @@ function moveCar(e){
      }
 };
 
-Obstacle = function (game, lane) {
-     var position = game.rnd.between(0, 1) + 2 * lane;
-	Phaser.Sprite.call(this, game, game.width * (position * 2 + 1) / 8, -20, "obstacle");
-	game.physics.enable(this, Phaser.Physics.ARCADE);
-     this.anchor.set(0.5);
-     this.tint = carColors[Math.floor(position / 2)];
-};
+    
 
-Obstacle.prototype = Object.create(Phaser.Sprite.prototype);
-Obstacle.prototype.constructor = Obstacle;
-
-Obstacle.prototype.update = function() {
-	this.body.velocity.y = obstacleSpeed;
-	if(this.y > game.height){
-		this.destroy();
-	}
-};
-
-Target = function (game, lane) {
-     var position = game.rnd.between(0, 1) + 2 * lane;
-	Phaser.Sprite.call(this, game, game.width * (position * 2 + 1) / 8, -20, "target");
-	game.physics.enable(this, Phaser.Physics.ARCADE);
-     this.anchor.set(0.5);
-     this.tint = carColors[Math.floor(position / 2)];
-};
-
-Target.prototype = Object.create(Phaser.Sprite.prototype);
-Target.prototype.constructor = Target;
-
-Target.prototype.update = function() {
-	this.body.velocity.y = obstacleSpeed;
-	if(this.y > game.height - this.height / 2){
-		game.state.start("PlayGame");   
-	}
-};
   window['mankinters'] = window['mankinters'] || {};
   window['mankinters'].minijuego2 = minijuego2;
 }());

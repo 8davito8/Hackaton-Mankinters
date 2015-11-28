@@ -64,7 +64,9 @@
         suelo.body.immovable = true; //No se puede mover
         suelo2.body.immovable = true; //No se puede mover
 
-
+        suelo.body.velocity.x = -250;
+        suelo2.body.velocity.x = -250;
+        
         // JUGADOR
         jugador = this.game.add.sprite(this.game.world.width*0.2, this.game.world.height -68 -55, 'dude');
 
@@ -73,10 +75,10 @@
 
         // PROPIEDADES FISICAS DEL JUGADOR
         //jugador.body.immovable = true;
-        jugador.body.bounce.y = 0.1; // REBOTE Y
+        jugador.body.bounce.y = 0; // REBOTE Y
         jugador.body.gravity.y = 700; // ALTURA DE SALTO
-        jugador.body.collideWorldBounds = true; // REBOTE CONTRA BORDES
-
+        jugador.body.collideWorldBounds = true; // REBOTE CONTRA BORDES DEL MUNDO
+        jugador.body.velocity.x = 250;
 
         // ANIMACIONES JUGADOR
         // name, frames, frameRate, loop
@@ -101,8 +103,8 @@
         pausa = this.game.input.keyboard.addKey(Phaser.Keyboard.ESC);
 
 
-        cactus.setAll('body.maxVelocity = 1000', 0);
-        comida.setAll('body.maxVelocity = 1000', 0);
+        cactus.setAll('body.maxVelocity = 1500', 0);
+        comida.setAll('body.maxVelocity = 1500', 0);
 
         this.game.world.swap(cactus, bases);
 
@@ -112,17 +114,28 @@
         this.game.physics.arcade.collide(jugador, bases);
         this.game.physics.arcade.overlap(jugador, comida, this.subirPuntos, null, this);
         this.game.physics.arcade.overlap(jugador, cactus, this.salirNivel, null, this);
-
+        
         puntos += 0.25;
         //jugador.body.velocity.y = 0;
         
-        //suelo.
+        if(jugador.body.touching.down){
+            jugador.body.velocity.x = 250;
+        }
+        
+        if(suelo.x <= -640){
+            suelo.x = 639;
+        }
+        
+        if(suelo2.x <= -640){
+            suelo2.x = 639;
+        }        
 
         if(pausa.isDown){
             this.game.state.start('menu');
         }
 
         if(cursors.up.isDown && jugador.body.touching.down){
+            jugador.body.velocity.x = 0;
             jugador.body.velocity.y = -450;
             jugador.frame = 2;
             //jugador.animation.paused = true;
