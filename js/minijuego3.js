@@ -151,7 +151,7 @@
             if (pausa.isDown) {
                 jugador.body.velocity.x = 0;
                 jugador.body.velocity.y = 0;
-                sonido.stop();
+                //sonido.stop();
                 this.game.state.start('mapa');
             }
 

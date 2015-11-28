@@ -105,7 +105,7 @@
 
              
             if(cursors.up.isDown && player.body.onFloor()){
-                console.log('entra');
+                //console.log('entra');
                 player.body.velocity.y = -250;                
                 jumpTimer = this.game.time.now + 350;
             }
@@ -164,7 +164,7 @@
             sonido.play();
             juego.world.remove(guitarra);
             player.body.velocity.x = 0;
-            perdido = this.game.add.sprite(100, 100, 'ganado');
+            ganado = this.game.add.sprite(100, 100, 'ganado');
 //            GameOver = juego.add.text(juego.world.centerX - 50, juego.world.centerY - 12, 'Game Over', {
 //                font: "24px Arial",
 //                fill: "#000"
