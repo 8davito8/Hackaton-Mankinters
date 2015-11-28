@@ -6,6 +6,7 @@
     var layer;
     var player;
     var guitarra;
+    var sonido;
     var facing = 'left';
     var jumpTimer = 0;
     var cursors;
@@ -20,7 +21,7 @@
 
     minijuego1.prototype = {
         preload: function () {
-
+            sonido = this.game.add.audio('acierto');
         },
 
         create: function () {
@@ -47,13 +48,14 @@
 
             player = this.game.add.sprite(32, this.game.world.height - 100, 'elvis');
 
-            guitarra = this.game.add.image(300, 100, 'guitarra');
-            //guitarra.enableBody = true;
+            guitarra = this.game.add.group();
+            var guitar = guitarra.create(450, 100, 'guitarra');
+            guitarra.enableBody = true;
             
             this.game.physics.enable(guitarra);
             this.game.physics.enable(guitarra, Phaser.Physics.ARCADE);
-            //guitarra.body.gravity.y = 200;
-            //guitarra.body.bounce.y = 0.2;
+            guitar.body.gravity.y = 200;
+            guitar.body.bounce.y = 0.2;
             
             this.game.physics.enable(player);
             
@@ -77,14 +79,12 @@
             //TECLA PARA PAUSA
             pausa = this.game.input.keyboard.addKey(Phaser.Keyboard.ESC);
 
-
-
         },
 
         update: function () {
 
             this.game.physics.arcade.collide(player, layer);
-            this.game.physics.arcade.collide(layer, guitarra);
+            this.game.physics.arcade.collide(layer, guitarra, this.win);
             this.game.physics.arcade.overlap(player, guitarra);
 
             player.body.velocity.x = 0;
@@ -117,6 +117,18 @@
                 }
             }
             
+            if(cursors.up.isDown && player.body.touching.down){
+                player.body.velocity.y = -250;                
+                jumpTimer = this.game.time.now + 350;
+            }
+            
+
+            if(player.body.velocity.x < 0 && !player.body.onFloor()){
+                player.frame = 7;
+            }else if(player.body.velocity.x > 0 && !player.body.onFloor()){
+                player.frame = 3;
+            }
+            
             if (jumpButton.isDown && player.body.onFloor() && this.game.time.now > jumpTimer) {
                 player.body.velocity.y = -250;
                 jumpTimer = this.game.time.now + 350;
@@ -130,6 +142,11 @@
                 player.body.velocity.x = 0;
                 this.game.state.start('mapa');
             }
+        },
+        
+        win: function(){
+            sonido.play();
+            
         },
 
         onInputDown: function () {
