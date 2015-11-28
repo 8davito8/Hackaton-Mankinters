@@ -9,6 +9,8 @@ var cact1 , cact2;
 
 var coche;
 var coche1;
+var position = [];
+var count = 0;
  
 var carGroup;
 var obstacleGroup;
@@ -51,6 +53,8 @@ var obstacleDelay = 1400;
         coche1 = this.game.add.sprite(this.game.world.centerX + 30, this.game.height - 80, "car");
         this.game.physics.enable(coche1, Phaser.Physics.ARCADE); 
         coche1.tint = 0x333333;  
+        
+        position = [coche.x, coche.x - 70];
 
         cactus = this.game.add.group();7
         cactus.enableBody = true;
@@ -67,47 +71,48 @@ var obstacleDelay = 1400;
     },
 
     update: function () {
-          
+       
+        if(coche.x <= juego.world.centerX - 130 || coche.x >= juego.world.centerX -58){
+            coche.body.velocity.x = 0;
+        }
+        
         if(cact1.y >= this.game.world.height){
             cact1.y = -50;
             cact2.y = -50;
         }
-        this.game.physics.arcade.collide(carGroup, obstacleGroup, function(){
+        
+        /*this.game.physics.arcade.collide(carGroup, obstacleGroup, function(){
                this.game.state.start("menu");     
           });
           this.game.physics.arcade.collide(carGroup, targetGroup, function(c, t){
                t.destroy();
-          });
+          });*/
     },
       
     cambiarCarril: function() {
-        var steerTween = juego.add.tween(coche).to({
-            angle: 20 - 40 * coche.side
-        }, 250 / 2, Phaser.Easing.Linear.None, true);
-        steerTween.onComplete.add(function(){
-               var steerTween = juego.add.tween(cars[carToMove]).to({
+         var steerTween = juego.add.tween(coche).to({
+               angle: 20 - 40 * count
+          }, 250 / 2, Phaser.Easing.Linear.None, true);
+          steerTween.onComplete.add(function(){
+               var steerTween = juego.add.tween(coche).to({
                     angle: 0
-               }, carTurnSpeed / 2, Phaser.Easing.Linear.None, true);
-        });
+               }, 250 / 2, Phaser.Easing.Linear.None, true);
+          })
+          coche = 1 - count;
+          var moveTween = juego.add.tween(coche).to({ 
+               x: position[count],
+          }, 250, Phaser.Easing.Linear.None, true);
     }
 
   };
 
 function moveCar(e){
-     var carToMove = Math.floor(coche.position.x / (this.game.width / 2));
+ var carToMove = Math.floor(e.position.x / (game.width / 2));
      if(cars[carToMove].canMove){
           cars[carToMove].canMove = false;
-          var steerTween = game.add.tween(cars[carToMove]).to({
-               angle: 20 - 40 * cars[carToMove].side
-          }, carTurnSpeed / 2, Phaser.Easing.Linear.None, true);
-          steerTween.onComplete.add(function(){
-               var steerTween = game.add.tween(cars[carToMove]).to({
-                    angle: 0
-               }, carTurnSpeed / 2, Phaser.Easing.Linear.None, true);
-          })
           cars[carToMove].side = 1 - cars[carToMove].side;
-          var moveTween = game.add.tween(cars[carToMove]).to({ 
-               x: cars[carToMove].positions[cars[carToMove].side],
+          var moveTween = game.add.tween(coche).to({ 
+               x: position[count],
           }, carTurnSpeed, Phaser.Easing.Linear.None, true);
           moveTween.onComplete.add(function(){
                cars[carToMove].canMove = true;
