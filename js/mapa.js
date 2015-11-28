@@ -48,7 +48,8 @@
             player.animations.add('down', [6, 7, 8], 10, true);
 
             casas = this.game.add.physicsGroup();
-            casas.create(80, 25, 'taj');
+            var taj = casas.create(80, 25, 'taj');
+            taj.body.setSize(120,372, 120, 450);
             casas.create(510, 13, 'hotel');
             casas.create(850, 65, 'club');
             casas.setAll('body.immovable', true);
@@ -67,6 +68,7 @@
         update: function () {
             this.game.physics.arcade.overlap(player, vacio, pantalla1);
             this.game.physics.arcade.collide(player, muro);
+            this.game.physics.arcade.collide(player, casas);
             player.body.velocity.x = 0;
             player.body.velocity.y = 0;
 
