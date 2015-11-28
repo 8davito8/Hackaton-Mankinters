@@ -58,11 +58,11 @@
             this.game.physics.enable(player);
             this.game.physics.enable(player, Phaser.Physics.ARCADE);
 
-            player.body.bounce.y = 0.2;
+            player.body.bounce.y = 0.1;
             player.body.collideWorldBounds = true;
             player.body.setSize(20, 32, 5, 16);
 
-            player.body.gravity.y = 450;
+            player.body.gravity.y = 320;
 
             player.animations.add('left', [0, 1, 2, 3], 10, true);
             player.animations.add('turn', [4], 20, true);
