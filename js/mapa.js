@@ -15,7 +15,6 @@
             //this.game.load.baseURL = 'http://examples.phaser.io/assets/';
             this.game.load.crossOrigin = 'anonymous';
             this.load.image('backdrop', 'assets/fondoLasVegasB.png');
-            this.game.load.image('player', '/assets/dude.png');
             this.game.load.image('club', 'assets/Stripclub.png');
             this.game.load.image('hotel', 'assets/Hotel.png');
             this.game.load.image('taj', 'assets/TajMahal.png');
@@ -25,7 +24,7 @@
         create: function () {
             this.game.world.setBounds(0, 0, 1200, 900);
             this.game.add.sprite(0, 0, 'backdrop');
-            player = this.game.add.sprite(100, 200, 'dude');
+            player = this.game.add.sprite(100, 500, 'dude');
             this.game.camera.follow(player);
             this.game.physics.arcade.enable(player);
 
@@ -36,16 +35,16 @@
 
             casas = this.game.add.physicsGroup();
 
-            casas.create(500, 150, 'club');
-            casas.create(-200, 300, 'hotel');
-            casas.create(400, 450, 'taj');
+            casas.create(850, 65, 'club');
+            casas.create(510, 13, 'hotel');
+            casas.create(80, 25, 'taj');
 
             casas.setAll('body.immovable', true);
 
             cursors = this.game.input.keyboard.createCursorKeys();
         },
         update: function () {
-            this.game.physics.arcade.collide(player, casas);
+            //this.game.physics.arcade.collide(player, casas);
             var parado = false;
             player.body.velocity.x = 0;
             player.body.velocity.y = 0;
@@ -58,15 +57,13 @@
                 player.body.velocity.x = 250;
                 player.animations.play('right');
                 parado = true;
-            }
-            if (cursors.up.isDown) {
+            }else if (cursors.up.isDown) {
                 player.body.velocity.y = -250;
                 parado = true;
             } else if (cursors.down.isDown) {
                 player.body.velocity.y = 250;
                 parado = true;
-            }
-            if (parado == true) {
+            }else{
                 //  Stand still
                 player.animations.stop();
                 player.frame = 4;
