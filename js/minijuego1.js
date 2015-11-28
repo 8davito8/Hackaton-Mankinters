@@ -28,7 +28,7 @@
 
     minijuego1.prototype = {
         preload: function () {
-            sonido = this.game.add.audio('acierto');
+            sonido = this.game.add.audio('guitar');
         },
 
         create: function () {
