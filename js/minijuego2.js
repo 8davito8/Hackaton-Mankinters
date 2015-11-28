@@ -119,6 +119,7 @@
             // ACCION AL TOCAR GRIETAS
             this.game.physics.arcade.overlap(coche, grieta, this.aceleran, null, this);
 
+            
             // APARECEN LOS CACTUS OTRA VEZ ARRIBA
             if (cact1.y >= this.game.world.height) {
                 cact1.y = -50;
