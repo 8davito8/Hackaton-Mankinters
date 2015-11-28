@@ -58,9 +58,9 @@
         this.game.load.spritesheet("dude1", "./assets/Sprite Minijuego 1 (50x60).png", 50, 60);
 
         //Banda Sonora
-        game.load.audio('melodia1', 'assets/musica/melodia1.mp3');
-        game.load.audio('melodia2', 'assets/audio/melodia2.mp3');
-        game.load.audio('melodia3', 'assets/audio/melodia3.mp3');
+        this.game.load.audio('melodia1', 'assets/musica/melodia1.mp3');
+        this.game.load.audio('melodia2', 'assets/audio/melodia2.mp3');
+        this.game.load.audio('melodia3', 'assets/audio/melodia3.mp3');
     
     },
 
