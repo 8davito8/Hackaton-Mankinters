@@ -142,11 +142,11 @@
         }
         
         if(suelo.x <= -640){
-            suelo.x = 639;
+            suelo.x = 640;
         }
         
         if(suelo2.x <= -640){
-            suelo2.x = 639;
+            suelo2.x = 640;
         }        
 
         if(pausa.isDown){
