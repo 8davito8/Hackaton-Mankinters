@@ -91,7 +91,7 @@
         
         // ANIMACIONES JUGADOR
         // name, frames, frameRate, loop
-        jugador.animations.add('right', [1,2,3], 10, true);
+        jugador.animations.add('right', [0,1,2], 10, true);
         jugador.animations.play('right');
 
 
@@ -137,6 +137,8 @@
         
         if(jugador.body.touching.down){
             jugador.body.velocity.x = 250;
+        }else{
+            jugador.frame = 4;
         }
         
         if(suelo.x <= -640){
@@ -156,7 +158,7 @@
         if(cursors.up.isDown && jugador.body.touching.down){
             jugador.body.velocity.x = 0;
             jugador.body.velocity.y = -450;
-            jugador.frame = 2;
+            jugador.frame = 4;
             //jugador.animation.paused = true;
         }
         
