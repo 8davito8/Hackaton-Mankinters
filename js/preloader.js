@@ -50,10 +50,10 @@
         
         //MINIJUEGO 3
         this.game.load.image("star", "./assets/Pollo.png");
-        this.game.load.image("cactus1", "./assets/Cactus1.png");
-        this.game.load.image("cactus2", "./assets/Cactus2.png");
-        this.game.load.image("ground", "./assets/Suelo.png");
-        this.game.load.spritesheet("dude1", "./assets/Sprite_Minijuego.png", 50, 60);
+        this.game.load.image("cactus1", "assets/Cactus1.png");
+        this.game.load.image("cactus2", "assets/Cactus2.png");
+        this.game.load.image("ground", "assets/Suelo.png");
+        this.game.load.spritesheet("dude1", "assets/Sprite_Minijuego.png", 50, 60);
 
         //Banda Sonora
         this.game.load.audio('melodia1', 'assets/musica/melodia1.mp3');
@@ -65,8 +65,8 @@
         this.game.load.audio('jump','assets/musica/jump.wav');
     
         //Has ganado y has perdido
-        this.game.load.image("ganado", "./assets/HasGanado.png");
-        this.game.load.image("perdido", "./assets/HasPerdido.png");
+        this.game.load.image("ganado", "assets/HasGanado.png");
+        this.game.load.image("perdido", "assets/HasPerdido.png");
     },
 
     create: function () {
