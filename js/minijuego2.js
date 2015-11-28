@@ -93,6 +93,11 @@
         update: function () {
 
             //COCHE NEGRO GANA TU PIERDES
+            if (coche.y <= 0) {
+                Ganar();
+            }
+            
+            //COCHE NEGRO GANA TU PIERDES
             if (coche1.y <= 0) {
                 finish();
             }
@@ -162,7 +167,8 @@
             //this.game.time.events.stop();
             juego.world.remove(GameOver);
             juego.state.start('menu');
-        });    }
+        });
+    }
 
 
     window['mankinters'] = window['mankinters'] || {};
