@@ -181,6 +181,8 @@
 
         cactus.setAll('body.velocity.x', 0);
         comida.setAll('body.velocity.x', 0);
+        bases.setAll('body.velocity.x', 0);
+        jugador.body.velocity.x = 0;
 
         textoPuntos.visible = false;
 
