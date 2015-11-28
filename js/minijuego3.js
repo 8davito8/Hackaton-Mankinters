@@ -123,6 +123,7 @@
 
         //PONE EL SUELO DELANTE DE LOS CACTUS
         this.game.world.swap(cactus, bases);
+        this.game.world.swap(comida, bases);
     },
 
     update: function () {
@@ -137,7 +138,7 @@
         this.game.physics.arcade.overlap(jugador, comida, this.subirPuntos, null, this);
         this.game.physics.arcade.overlap(jugador, cactus, this.salirNivel, null, this);
         
-        puntos += 0.25;
+        puntos += 0.40;
         //jugador.body.velocity.y = 0;
         
         if(jugador.body.touching.down){
@@ -188,14 +189,14 @@
                 cact.body.velocity.x = -1 * (250 + puntos*0.3);
                 cact.scale.setTo(0.75, 0.75);
            }else{
-                var cact = cactus.create(juego.world.width, juego.world.height -62 -75, 'cactus1');
+                var cact = cactus.create(juego.world.width, juego.world.height -62 -85, 'cactus1');
                 cact.body.velocity.x = -1 * (250 + puntos*0.3);
-                cact.scale.setTo(1.50, 1.50);
+                cact.scale.setTo(1.75, 1.75);
            }
         }else{
             
             if(Math.random()>Math.random()){
-                var hamb = comida.create(juego.world.width, juego.world.height -64 -22, 'star');
+                var hamb = comida.create(juego.world.width, juego.world.height -64 -44, 'star');
                 hamb.body.velocity.x = -1 * (250 + puntos*0.3);
                 hamb.scale.setTo(2,2);
             }
