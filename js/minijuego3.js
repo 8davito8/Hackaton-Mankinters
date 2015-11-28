@@ -88,7 +88,6 @@
         jugador.body.collideWorldBounds = true; // REBOTE CONTRA BORDES DEL MUNDO
         jugador.body.velocity.x = 250;
 
-        jugador.position.x = this.game.world.width*0.2;
         
         // ANIMACIONES JUGADOR
         // name, frames, frameRate, loop
@@ -119,10 +118,13 @@
 
         //PONE EL SUELO DELANTE DE LOS CACTUS
         this.game.world.swap(cactus, bases);
-
     },
 
     update: function () {
+        jugador.x = this.game.world.width * 0.2;
+        console.log(jugador.x);
+        
+        
         this.game.physics.arcade.collide(jugador, bases);
         this.game.physics.arcade.overlap(jugador, comida, this.subirPuntos, null, this);
         this.game.physics.arcade.overlap(jugador, cactus, this.salirNivel, null, this);
