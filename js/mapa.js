@@ -1,3 +1,6 @@
+function miprima(){
+    console.log("hola");
+}
 (function () {
     'use strict';
 
@@ -6,6 +9,7 @@
     var cursors;
     var jumpButton;
     var muro;
+    var posicion;
 
     function mapa() {}
 
@@ -58,14 +62,26 @@
                 muro.create(832 + i * 48, 179, 'murolateral');
             }
 
-            for (var i = 0; i < 2; i++) {
-                muro.create(72 + i * 48, 372, 'murolateral');
+            for (var i = 0; i < 7; i++) {
+                if(i==2||i==3||i==4){
+
+                }else{
+                    muro.create(72 + i * 48, 372, 'murolateral');
+                }
             }
-            for (var i = 0; i < 1; i++) {
-                muro.create(497.5 + i * 48, 372, 'murolateral');
+            for (var i = 0; i < 5; i++) {
+                if(i==1||i==2||i==3){
+
+                }else{
+                    muro.create(497.5 + i * 48, 372, 'murolateral');
+                }
             }
-            for (var i = 0; i < 2; i++) {
-                muro.create(832 + i * 48, 372, 'murolateral');
+            for (var i = 0; i < 6; i++) {
+                if(i==2||i==3){
+
+                }else{
+                    muro.create(832 + i * 48, 372, 'murolateral');
+                }
             }
 
             for (var i = 0; i < 4; i++) {
@@ -91,6 +107,8 @@
             muro.create(1115.5, 179, 'muroarriba');
 
 
+
+
             muro.setAll('body.immovable', true);
             this.game.world.swap(muro, casas);
 
@@ -98,29 +116,28 @@
         },
         update: function () {
             this.game.physics.arcade.collide(player, muro);
-            var parado = false;
             player.body.velocity.x = 0;
             player.body.velocity.y = 0;
 
             if (cursors.left.isDown) {
                 player.body.velocity.x = -250;
                 player.animations.play('left');
-                parado = true;
+                posicion = 9;
             } else if (cursors.right.isDown) {
                 player.body.velocity.x = 250;
                 player.animations.play('right');
-                parado = true;
+                posicion = 3;
             } else if (cursors.up.isDown) {
                 player.body.velocity.y = -250;
                 player.animations.play('up');
-                parado = true;
+                posicion = 0;
             } else if (cursors.down.isDown) {
                 player.body.velocity.y = 250;
                 player.animations.play('down');
-                parado = true;
+                posicion = 6;
             } else {
                 player.animations.stop();
-                player.frame = 4;
+                player.frame = posicion;
             }
         },
     };
