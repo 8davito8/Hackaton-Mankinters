@@ -62,6 +62,8 @@
         this.game.load.audio('melodia1', 'assets/musica/melodia1.mp3');
         this.game.load.audio('melodia2', 'assets/musica/melodia2.mp3');
         this.game.load.audio('melodia3', 'assets/musica/melodia3.mp3');
+        this.game.load.audio('acierto','assets/musica/acierto.mp3');
+        this.game.load.audio('fallo','assets/musica/fallo.mp3');
     
     },
 
