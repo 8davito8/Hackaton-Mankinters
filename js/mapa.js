@@ -49,7 +49,7 @@
 
             casas = this.game.add.physicsGroup();
             var taj = casas.create(80, 25, 'taj');
-            taj.body.setSize(120,372, 120, 450);
+            taj.body.setSize(372,120, 120, 450);
             casas.create(510, 13, 'hotel');
             casas.create(850, 65, 'club');
             casas.setAll('body.immovable', true);
