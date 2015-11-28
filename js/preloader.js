@@ -48,7 +48,8 @@
         //MINIJUEGO 2
         this.game.load.image("road", "assets/road.png");
         this.game.load.image("grieta", "assets/grieta.png");
-        this.game.load.image("car", "assets/car.png");
+        this.game.load.image("car", "assets/Coche .png");
+        this.game.load.image("car1", "assets/car.png");
         
         //MINIJUEGO 3
         this.game.load.image("star", "./assets/Pollo.png");
@@ -58,9 +59,9 @@
         this.game.load.spritesheet("dude1", "./assets/Sprite Minijuego 1 (50x60).png", 50, 60);
 
         //Banda Sonora
-        this.game.load.audio('melodia1', 'assets/musica/melodia1.mp3');
+        /*this.game.load.audio('melodia1', 'assets/musica/melodia1.mp3');
         this.game.load.audio('melodia2', 'assets/audio/melodia2.mp3');
-        this.game.load.audio('melodia3', 'assets/audio/melodia3.mp3');
+        this.game.load.audio('melodia3', 'assets/audio/melodia3.mp3');*/
     
     },
 

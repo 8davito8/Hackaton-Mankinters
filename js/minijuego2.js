@@ -48,12 +48,12 @@
             // COCHE ROJO
             coche = this.game.add.sprite(this.game.world.centerX - 60, this.game.height - 80, "car");
             this.game.physics.enable(coche, Phaser.Physics.ARCADE);
-            coche.tint = 0xff0000;
+            //coche.tint = 0xff0000;
             coche.body.velocity.y = -20;
 
 
             //COCHE NEGRO
-            coche1 = this.game.add.sprite(this.game.world.centerX + 30, this.game.height - 80, "car");
+            coche1 = this.game.add.sprite(this.game.world.centerX + 30, this.game.height - 80, "car1");
             this.game.physics.enable(coche1, Phaser.Physics.ARCADE);
             coche1.tint = 0x333333;
 
@@ -85,7 +85,7 @@
                 } else {
                     gri = grieta.create(juego.world.centerX - 140, -50, 'grieta');
                 }
-
+                gri.scale.setTo(0.15, 0.15);
                 gri.body.velocity.y = 150;
             });
 
