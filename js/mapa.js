@@ -35,11 +35,11 @@
             this.game.load.image('vacio', 'assets/lleno.png');
             this.game.load.spritesheet('dude', 'assets/spriteInicio.png', 50, 60);
 */
+            musica = this.game.add.audio('melodia3');
+            musica.play();
 
         },
         create: function () {
-            musica = this.game.add.audio('melodia3');
-            musica.play();
 
             this.game.world.setBounds(0, 0, 1200, 900);
             this.game.add.sprite(0, 0, 'backdrop');

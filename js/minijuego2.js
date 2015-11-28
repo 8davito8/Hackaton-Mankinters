@@ -121,8 +121,8 @@
 
             // APARECEN LOS CACTUS OTRA VEZ ARRIBA
             if (cact1.y >= this.game.world.height) {
-                cact1.y = (Math.random()*10+5)-50;
-                cact2.y = (Math.random()*12+3)-50;
+                cact1.y = -50;
+                cact2.y = -50;
             }
 
             if(pausa.isDown){
