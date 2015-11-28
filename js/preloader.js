@@ -51,7 +51,7 @@
         this.game.load.image("car", "assets/car.png");
         
         //MINIJUEGO 3
-        this.game.load.image("star", "./assets/star.png");
+        this.game.load.image("star", "./assets/Pollo.png");
         this.game.load.image("cactus1", "./assets/Cactus 1.png");
         this.game.load.image("cactus2", "./assets/Cactus 2.png");
         this.game.load.image("ground", "./assets/Suelo.png");
