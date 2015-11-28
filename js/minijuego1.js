@@ -19,7 +19,7 @@
 
             this.game.load.tilemap('prueba', 'assets/prueba.json', null, Phaser.Tilemap.TILED_JSON);
             this.game.load.image('tiles', 'assets/scifi.png');
-            this.game.load.spritesheet('elvis', 'assets/Sprite Minijuego 1 (50x55).png', 50, 55);
+            this.game.load.spritesheet('elvis', 'assets/Sprite Inicio (50x60).png', 50, 55);
             this.game.load.image('background', 'assets/sky.png');
 
         },
