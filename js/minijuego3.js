@@ -5,6 +5,9 @@
     var cactus;
     var jugador;
     var comida;
+    
+    var suelo;
+    var suelo2;
 
     var ancho;
     var alto;
@@ -25,8 +28,9 @@
     preload: function() {
 
         this.game.load.image("star", "./assets/star.png");
-        this.game.load.image("pipe", "./assets/pipe.png");
-        this.game.load.image("ground", "./assets/platform.png");
+        this.game.load.image("cactus1", "./assets/Cactus 1.png");
+        this.game.load.image("cactus2", "./assets/Cactus 2.png");
+        this.game.load.image("ground", "./assets/Suelo.png");
         this.game.load.spritesheet("dude", "./assets/Sprite Minijuego 1 (50x55).png", 50, 55);
 
     },
@@ -50,15 +54,19 @@
         bases = this.game.add.group();
         bases.enableBody = true;
 
-        var suelo = bases.create(0, this.game.world.height -32, 'ground');
+        suelo = bases.create(0, this.game.world.height - 68, 'ground');
+        suelo.body.setSize(640, 0, 62, 6);
 
-        suelo.scale.setTo(2,1); // 2. se repite x 2 veces --- 1. No se repite
+        suelo2 = bases.create(640, this.game.world.height - 68, 'ground');
+        suelo2.body.setSize(640, 0, 62, 6);
+        
+        //suelo.scale.setTo(2,1); // 2. se repite x 2 veces --- 1. No se repite
         suelo.body.immovable = true; //No se puede mover
-        suelo.z = 1;
+        suelo2.body.immovable = true; //No se puede mover
 
 
         // JUGADOR
-        jugador = this.game.add.sprite(this.game.world.width*0.2, this.game.world.height-100, 'dude');
+        jugador = this.game.add.sprite(this.game.world.width*0.2, this.game.world.height -68 -55, 'dude');
 
         // ACTIVA FISICAS PARA EL JUGADOR
         this.game.physics.arcade.enable(jugador);
@@ -107,6 +115,8 @@
 
         puntos += 0.25;
         //jugador.body.velocity.y = 0;
+        
+        //suelo.
 
         if(pausa.isDown){
             this.game.state.start('menu');
@@ -129,13 +139,16 @@
     crearCactus: function() {
 
         if(Math.random() > Math.random()){
-
-            var altura = Math.random() * (100 - 64) + 64;
-
-            var cact = cactus.create(juego.world.width, juego.world.height - altura, 'pipe');
-            cact.body.velocity.x = -1 * (250 + puntos*0.3);
+            
+            if(Math.random() > Math.random()){ //65 TAMAÑO SUELO, 50 O 25 TAMAÑO CACTUS
+                var cact = cactus.create(juego.world.width, juego.world.height -62 -50, 'cactus1');
+                cact.body.velocity.x = -1 * (250 + puntos*0.3);
+            }else{
+                var cact = cactus.create(juego.world.width, juego.world.height -62 -25, 'cactus2');
+                cact.body.velocity.x = -1 * (250 + puntos*0.3);
+            }
         }else{
-            var hamb = comida.create(juego.world.width, juego.world.height - 64, 'star');
+            var hamb = comida.create(juego.world.width, juego.world.height -64 -22, 'star');
             hamb.body.velocity.x = -1 * (250 + puntos*0.3);
         }
     },
