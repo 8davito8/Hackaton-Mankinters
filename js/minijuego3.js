@@ -156,7 +156,7 @@
             }
 
             if (cursors.up.isDown && jugador.body.touching.down) {
-                jumps.start();
+                jumps.play();
                 jugador.body.velocity.x = 0;
                 jugador.body.velocity.y = -450;
                 jugador.frame = 4;
