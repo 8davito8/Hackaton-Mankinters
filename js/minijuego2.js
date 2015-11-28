@@ -169,7 +169,7 @@
         juego.time.events.loop(1000, function () {
             //this.game.time.events.stop();
             juego.world.remove(GameOver);
-            juego.state.start('menu');
+            juego.state.start('mapa');
         });
     }
     
@@ -182,7 +182,7 @@
         juego.time.events.loop(1000, function () {
             //this.game.time.events.stop();
             juego.world.remove(GameOver);
-            juego.state.start('menu');
+            juego.state.start('mapa');
         });
     }
 
