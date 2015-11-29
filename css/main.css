@@ -1,12 +1,12 @@
 .game{
-    margin-top: 50px;
-    background: url('../images/vegas.jpg');
+    margin-top: 200px;
+}
+
+body{
+        background: url('../images/fondovegas.jpg');
     background-size : 100%;
     background-size: contain;
 /*    background-repeat: repeat-x;*/
     background-position: left bottom;
-}
-
-body{
     background-color: #060606;
 }
